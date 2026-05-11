@@ -8,25 +8,31 @@ pygame.init()
 # ----- Gera tela principal
 WIDTH = 480
 HEIGHT = 320
-window = pygame.display.set_mode((WIDTH, HEIGHT))
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Matias, Lucas, Gabriel')
 
+
 # ----- Inicia estruturas de dados
+tick = pygame.time.Clock()
 game = True
 player = Player(100,100)
 
 # ===== Loop principal =====
 while game:
+    tick.tick(60)
     # ----- Trata eventos
     for event in pygame.event.get():
         # ----- Verifica consequências
         if event.type == pygame.QUIT:
             game = False
     keys = pygame.key.get_pressed()
-    player.move(keys)
+    player.movimento(keys)
+
 
     # ----- Gera saídas
-    window.fill((0, 0, 50))  # Preenche com a cor branca
+    screen.fill((0, 0, 50))  # Preenche com a cor branca
+
+    player.draw(screen)
 
     # ----- Atualiza estado do jogo
     pygame.display.update()  # Mostra o novo frame para o jogador
