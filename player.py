@@ -17,3 +17,5 @@ class Player:
             self.x += self.speed
         if keys[pygame.K_d]:
             self.x -= self.speed
+
+        
