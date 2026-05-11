@@ -1,6 +1,6 @@
 import random
 
-class Move:
+class Move: #IA
     def __init__(self, name, move_type, power, accuracy, pp):
         self.name = name          # "Lança-Chamas"
         self.move_type = move_type  # "Fogo"
@@ -35,7 +35,7 @@ class battle:
         self.player.take_damage(damage)
         self.message = f"{self.enemy.name} usou {move.name}"
     
-    def calculate_damage(self, move, attacker, defender):
+    def calculate_damage(self, move, attacker, defender): #IA
         return int((move.power * attacker.attack) / defender.defense * 0.5)
     
     def check_winner(self):
