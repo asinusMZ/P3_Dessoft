@@ -2,11 +2,11 @@ import pygame
 pygame.init()
 
 # ----- Gera tela principal
-WIDTH = 480
-HEIGHT = 320
+WIDTH = 360
+HEIGHT = 144
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Matias, Lucas, Gabriel')
-nome_pokemon = pygame.Rect((0,0), (100, 100))
+
 # ----- Inicia estruturas de dados
 game = True
 
@@ -21,7 +21,6 @@ while game:
     
     # ----- Gera saídas
     window.fill((0, 0, 50))  # Preenche com a cor branca
-    pygame.draw.rect(window, (0,0,0), nome_pokemon)
 
     # ----- Atualiza estado do jogo
     pygame.display.update()  # Mostra o novo frame para o jogador
