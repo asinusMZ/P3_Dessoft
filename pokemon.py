@@ -1,5 +1,5 @@
 class pokemon:
-    def __init__(name, hp, defense, moves):
+    def __init__(self,name, hp, defense, moves):
         self.name = name
         self.vida = hp
         self.defense = defense
