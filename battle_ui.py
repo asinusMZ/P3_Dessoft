@@ -5,7 +5,7 @@ pygame.init()
 
 width_base = 160
 height_base = 160
-escala = 3
+escala = 4
 WIDTH = width_base * escala
 HEIGHT = height_base * escala
 window = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -53,8 +53,10 @@ while game:
     
     # ----- Gera saídas
     tela_base.fill((255, 255, 255))  # Preenche com a cor branca
-    tela_base.blit(sublinhado, (4,3))
-    tela_base.blit(barra_de_vida, (8,6))
+    tela_base.blit(sublinhado, (8,10))
+    tela_base.blit(pygame.transform.flip(sublinhado, True, False), (81,98))
+    tela_base.blit(barra_de_vida, (11,13))
+    tela_base.blit(barra_de_vida, (86,94))
     tela_base.blit(caixa_de_texto, (0, 112))
 
     # ----- Atualiza estado do jogo

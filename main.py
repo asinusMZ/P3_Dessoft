@@ -6,9 +6,13 @@ from player import Player
 pygame.init()
 
 # ----- Gera tela principal
-WIDTH = 480
-HEIGHT = 320
+width_base = 160
+height_base = 160
+escala = 4
+WIDTH = width_base*escala
+HEIGHT = height_base*escala
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
+tela_base = pygame.Surface((width_base, height_base))
 pygame.display.set_caption('Matias, Lucas, Gabriel')
 
 
@@ -30,11 +34,13 @@ while game:
 
 
     # ----- Gera saídas
-    screen.fill((0, 0, 50))  # Preenche com a cor branca
+    tela_base.fill((255, 255, 255)) # Preenche com a cor branca
 
     player.draw(screen)
 
     # ----- Atualiza estado do jogo
+    tela_escalada = pygame.transform.scale(tela_base, (WIDTH, HEIGHT))
+    screen.blit(tela_escalada, (0, 0))
     pygame.display.update()  # Mostra o novo frame para o jogador
 
 # ===== Finalização =====
