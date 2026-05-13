@@ -1,16 +1,6 @@
 import pygame
-pygame.init()
 
-# ----- Gera tela principal
 
-width_base = 160
-height_base = 160
-escala = 4
-WIDTH = width_base * escala
-HEIGHT = height_base * escala
-window = pygame.display.set_mode((WIDTH, HEIGHT))
-tela_base = pygame.Surface((width_base, height_base))
-pygame.display.set_caption('Matias, Lucas, Gabriel')
 
 class SpriteSheet: #IA
     def __init__(self, path):
@@ -29,40 +19,41 @@ class SpriteSheet: #IA
         return self.get_sprite(x, y, width, height)
 
 sprite_sheet = SpriteSheet('assetspokemon.png')
+sprites_pokemons = SpriteSheet('pokemons.png')
 vermelho_transparente = sprite_sheet.get_color(215,28)
+cinza_transparente = sprites_pokemons.get_color(411,123)
 
 ## sprites
 sublinhado = sprite_sheet.get_sprite(187, 24, 264-187, 36-24)
 barra_de_vida = sprite_sheet.get_sprite(22, 178, 91-22, 184-178)
 caixa_de_texto = sprite_sheet.get_sprite(8, 104, 167-8, 151-104)
+caixa_de_acoes = sprite_sheet.get_sprite(72,256,167-72,303-256)
 
-lista_sprites = [sublinhado, barra_de_vida, caixa_de_texto]
+charmander = sprites_pokemons.get_sprite(424, 140, 455-424, 171-140)
+pikachu = sprites_pokemons.get_sprite(522,378,561-522, 417-378)
+
+lista_sprites = [sublinhado, barra_de_vida, caixa_de_texto, caixa_de_acoes]
+lista_pokemons = [charmander, pikachu]
 for sprite in lista_sprites:
     sprite.set_colorkey(vermelho_transparente)
-# ----- Inicia estruturas de dados
-game = True
+for sprite in lista_pokemons:
+    sprite.set_colorkey(cinza_transparente)
 
-# ===== Loop principal =====
-while game:
-    # ----- Trata eventos
-    for event in pygame.event.get():
-        # ----- Verifica consequências
-        if event.type == pygame.QUIT:
-            game = False
-    keys = pygame.key.get_pressed()
-    
-    # ----- Gera saídas
-    tela_base.fill((255, 255, 255))  # Preenche com a cor branca
-    tela_base.blit(sublinhado, (8,10))
-    tela_base.blit(pygame.transform.flip(sublinhado, True, False), (81,98))
-    tela_base.blit(barra_de_vida, (11,13))
-    tela_base.blit(barra_de_vida, (86,94))
-    tela_base.blit(caixa_de_texto, (0, 112))
 
-    # ----- Atualiza estado do jogo
-    tela_escalada = pygame.transform.scale(tela_base, (WIDTH, HEIGHT))
-    window.blit(tela_escalada, (0, 0))
-    pygame.display.update()  # Mostra o novo frame para o jogador
+def desenha_tela(tela, fonte):
+    tela.fill((255, 255, 255))  # Preenche com a cor branca
 
-# ===== Finalização =====
-pygame.quit()  # Função do PyGame que finaliza os recursos utilizados
+
+    texto = fonte.render("pica wants to fight", False, (0, 0, 0))
+    tela.blit(charmander, (2, 70))
+    tela.blit(pikachu, (100, 20))
+    tela.blit(texto, (5, 120))
+    tela.blit(sublinhado, (8,10))
+    tela.blit(pygame.transform.flip(sublinhado, True, False), (81,98))
+    tela.blit(barra_de_vida, (11,13))
+    tela.blit(barra_de_vida, (86,94))
+    tela.blit(caixa_de_texto, (0, 112))
+
+def desenha_caixas(caixa, tela):
+    if caixa == 'acoes':
+        tela.blit(caixa_de_acoes, (60, 100))

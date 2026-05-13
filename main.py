@@ -2,9 +2,12 @@
 # ----- Importa e inicia pacotes
 import pygame
 from player import Player
+from battle_ui import *
+from battle import *
+from pokemon import *
 
 pygame.init()
-
+fonte = pygame.font.Font(None, 16)
 # ----- Gera tela principal
 width_base = 160
 height_base = 160
@@ -19,6 +22,7 @@ pygame.display.set_caption('Matias, Lucas, Gabriel')
 # ----- Inicia estruturas de dados
 tick = pygame.time.Clock()
 game = True
+game_mode = 'andando'
 player = Player(100,100)
 
 # ===== Loop principal =====
@@ -30,13 +34,22 @@ while game:
         if event.type == pygame.QUIT:
             game = False
     keys = pygame.key.get_pressed()
-    player.movimento(keys)
-
-
+    
     # ----- Gera saídas
     tela_base.fill((255, 255, 255)) # Preenche com a cor branca
-
-    player.draw(screen)
+    if keys[pygame.K_b]:
+        game_mode = 'batalha'
+    if game_mode == 'andando':
+        player.movimento(keys)
+        player.draw(tela_base) 
+    elif game_mode == 'batalha':
+        mostra_caixa_acoes = False
+        desenha_tela(tela_base, fonte)
+        if keys[pygame.K_RETURN]:
+            mostra_caixa_acoes = True
+        if mostra_caixa_acoes == True:
+            desenha_caixas('acoes', tela_base)
+        
 
     # ----- Atualiza estado do jogo
     tela_escalada = pygame.transform.scale(tela_base, (WIDTH, HEIGHT))
