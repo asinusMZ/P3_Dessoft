@@ -20,8 +20,7 @@ class Player:
         self.load_frames()
 
     def load_frames(self):
-        sheet = SpriteSheet("assets/pokecharacters.png")
-
+        sheet = SpriteSheet("assets/pokecharacters.png", (255, 127, 39))
         self.animations = {
             "down": [
                 sheet.get_sprite(9, 34, 15, 15),
@@ -42,7 +41,7 @@ class Player:
 
             "right": [
                 sheet.get_sprite(145, 34, 15, 15),
-                sheet.get_sprite(187, 34, 15, 15),
+                sheet.get_sprite(162, 34, 15, 15),
             ],
         }
 
@@ -56,6 +55,8 @@ class Player:
 
     def move(self, keys):
         moving = False
+
+        old_direction = self.direction
 
         new_x = self.x
         new_y = self.y
@@ -79,6 +80,9 @@ class Player:
             new_x += self.speed
             self.direction = "right"
             moving = True
+
+        if self.direction != old_direction:
+            self.frame_index = 0
 
         self.x = new_x
         self.y = new_y

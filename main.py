@@ -40,7 +40,7 @@ while game:
     if keys[pygame.K_b]:
         game_mode = 'batalha'
     if game_mode == 'andando':
-        player.movimento(keys)
+        player.move(keys)
         player.draw(tela_base) 
     elif game_mode == 'batalha':
         mostra_caixa_acoes = False
