@@ -1,108 +1,99 @@
-from pathlib import Path
-
-print("Current folder:", Path.cwd())
-print("Assets folder exists:", Path("assets").exists())
-
-if Path("assets").exists():
-    print("Files inside assets:", list(Path("assets").iterdir()))
-
-
 import pygame
+from spritesheet import SpriteSheet
+
 
 class Player:
     def __init__(self, x, y):
+        super().__init__()
+
         self.x = x
         self.y = y
-        self.speed = 3
 
-        self.direction = "down" # IA
-        self.frame_index = 0 # IA
-        self.animation_timer = 0 # IA
+        self.width = 32
+        self.height = 32
+        self.speed = 4
 
-        self.sprite_width = 16
-        self.sprite_height = 21
-        self.scale = 3
+        self.direction = "down"
+        self.frame_index = 0
+        self.animation_timer = 0
 
-        self.sheet = pygame.image.load("assets/player_spritesheet.png").convert_alpha() # IA
+        self.load_frames()
 
-        # Remove blue background
-        self.sheet.set_colorkey((0, 0, 0)) # IA
+    def load_frames(self):
+        sheet = SpriteSheet("assets/pokecharacters.png")
 
         self.animations = {
             "down": [
-                self.get_sprite(23, 30),
-                self.get_sprite(39, 30),
-                self.get_sprite(55, 30),
+                sheet.get_sprite(9, 34, 15, 15),
+                sheet.get_sprite(26, 34, 15, 15),
+                sheet.get_sprite(43, 34, 15, 15),
             ],
+
             "up": [
-                self.get_sprite(23, 37),
-                self.get_sprite(39, 37),
-                self.get_sprite(55, 37),
+                sheet.get_sprite(60, 34, 15, 15),
+                sheet.get_sprite(77, 34, 15, 15),
+                sheet.get_sprite(94, 34, 15, 15),
             ],
+
             "left": [
-                self.get_sprite(23, 64),
-                self.get_sprite(39, 64),
-                self.get_sprite(55, 64),
+                sheet.get_sprite(111, 34, 15, 15),
+                sheet.get_sprite(128, 34, 15, 15),
             ],
+
             "right": [
-                self.get_sprite(40, 85),
-                self.get_sprite(45, 85),
-                self.get_sprite(50, 85),
+                sheet.get_sprite(145, 34, 15, 15),
+                sheet.get_sprite(187, 34, 15, 15),
             ],
         }
 
-    def get_sprite(self, x, y): # IA
-        sprite = pygame.Surface(
-            (self.sprite_width, self.sprite_height),
-            pygame.SRCALPHA
-        )
+        # Resize all sprites to 32x32
+        for direction in self.animations:
+            for i in range(len(self.animations[direction])):
+                self.animations[direction][i] = pygame.transform.scale(
+                    self.animations[direction][i],
+                    (self.width, self.height)
+                )
 
-        sprite.blit(
-            self.sheet,
-            (0, 0),
-            (x, y, self.sprite_width, self.sprite_height)
-        )
+    def move(self, keys):
+        moving = False
 
-        sprite = pygame.transform.scale(
-            sprite,
-            (self.sprite_width * self.scale, self.sprite_height * self.scale)
-        )
+        new_x = self.x
+        new_y = self.y
 
-        return sprite
-
-    def movimento(self, keys):
-        movendo = False
-
-        if keys[pygame.K_w]:
-            self.y -= self.speed
+        if keys[pygame.K_w] or keys[pygame.K_UP]:
+            new_y -= self.speed
             self.direction = "up"
-            movendo = True
+            moving = True
 
-        elif keys[pygame.K_s]:
-            self.y += self.speed
+        elif keys[pygame.K_s] or keys[pygame.K_DOWN]:
+            new_y += self.speed
             self.direction = "down"
-            movendo = True
+            moving = True
 
-        elif keys[pygame.K_a]:
-            self.x -= self.speed
+        elif keys[pygame.K_a] or keys[pygame.K_LEFT]:
+            new_x -= self.speed
             self.direction = "left"
-            movendo = True
+            moving = True
 
-        elif keys[pygame.K_d]:
-            self.x += self.speed
+        elif keys[pygame.K_d] or keys[pygame.K_RIGHT]:
+            new_x += self.speed
             self.direction = "right"
-            movendo = True
+            moving = True
 
-        if movendo:
+        self.x = new_x
+        self.y = new_y
+
+        if moving:
             self.animate()
         else:
-            self.frame_index = 1
+            self.frame_index = 0
 
-    def animate(self): # IA
+    def animate(self):
         self.animation_timer += 1
 
         if self.animation_timer >= 10:
             self.animation_timer = 0
+
             self.frame_index += 1
 
             if self.frame_index >= len(self.animations[self.direction]):
@@ -111,3 +102,11 @@ class Player:
     def draw(self, screen):
         current_sprite = self.animations[self.direction][self.frame_index]
         screen.blit(current_sprite, (self.x, self.y))
+
+    def get_rect(self):
+        return pygame.Rect(
+            self.x,
+            self.y,
+            self.width,
+            self.height
+        )
