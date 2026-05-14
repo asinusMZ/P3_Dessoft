@@ -12,7 +12,7 @@ window = pygame.display.set_mode((WIDTH, HEIGHT))
 game = True
 
 # ----- Inicia assets
-image = pygame.image.load('mapa.png').convert()
+image = pygame.image.load('assets/mapa.png').convert()
 
 # ===== Loop principal =====
 while game:

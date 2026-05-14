@@ -18,8 +18,8 @@ class SpriteSheet: #IA
         y = row * height
         return self.get_sprite(x, y, width, height)
 
-sprite_sheet = SpriteSheet('assetspokemon.png')
-sprites_pokemons = SpriteSheet('pokemons.png')
+sprite_sheet = SpriteSheet('assets/assetspokemon.png')
+sprites_pokemons = SpriteSheet('assets/pokemons.png')
 vermelho_transparente = sprite_sheet.get_color(215,28)
 cinza_transparente = sprites_pokemons.get_color(411,123)
 
@@ -44,7 +44,7 @@ def desenha_tela(tela, fonte):
     tela.fill((255, 255, 255))  # Preenche com a cor branca
 
 
-    texto = fonte.render("pica wants to fight", False, (0, 0, 0))
+    texto = fonte.render("pika wants to fight", False, (0, 0, 0))
     tela.blit(charmander, (2, 70))
     tela.blit(pikachu, (100, 20))
     tela.blit(texto, (5, 120))

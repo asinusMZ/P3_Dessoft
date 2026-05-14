@@ -23,15 +23,15 @@ class Player:
         sheet = SpriteSheet("assets/pokecharacters.png", (255, 127, 39))
         self.animations = {
             "down": [
-                sheet.get_sprite(9, 34, 15, 15),
                 sheet.get_sprite(26, 34, 15, 15),
                 sheet.get_sprite(43, 34, 15, 15),
+                sheet.get_sprite(9, 34, 15, 15),
             ],
 
             "up": [
-                sheet.get_sprite(60, 34, 15, 15),
                 sheet.get_sprite(77, 34, 15, 15),
                 sheet.get_sprite(94, 34, 15, 15),
+                sheet.get_sprite(60, 34, 15, 15),
             ],
 
             "left": [

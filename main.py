@@ -5,6 +5,7 @@ from player import Player
 from battle_ui import *
 from battle import *
 from pokemon import *
+from map import *
 
 pygame.init()
 fonte = pygame.font.Font(None, 16)
@@ -21,9 +22,12 @@ pygame.display.set_caption('Matias, Lucas, Gabriel')
 
 # ----- Inicia estruturas de dados
 tick = pygame.time.Clock()
+map = load_map()
 game = True
 game_mode = 'andando'
 player = Player(100,100)
+
+
 
 # ===== Loop principal =====
 while game:
@@ -36,11 +40,12 @@ while game:
     keys = pygame.key.get_pressed()
     
     # ----- Gera saídas
-    tela_base.fill((255, 255, 255)) # Preenche com a cor branca
+    tela_base.fill((0, 0, 0)) # Preenche com a cor branca
     if keys[pygame.K_b]:
         game_mode = 'batalha'
     if game_mode == 'andando':
         player.move(keys)
+        draw_map(screen, map)
         player.draw(tela_base) 
     elif game_mode == 'batalha':
         mostra_caixa_acoes = False
