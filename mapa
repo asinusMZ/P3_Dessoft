@@ -5,29 +5,58 @@ pygame.init()
 WIDTH = 638
 HEIGHT = 575
 window = pygame.display.set_mode((WIDTH, HEIGHT))
+clock = pygame.time.Clock()
 
-
-
-# ----- Inicia estruturas de dados
-game = True
 
 # ----- Inicia assets
-image = pygame.image.load('assets/mapa.png').convert()
+mapa = pygame.image.load('assets/mapa.png').convert()
+map_width = mapa.get_width()
+map_height = mapa.get_height()
 
-# ===== Loop principal =====
+player_x = 300
+player_y = 300
+player_speed = 5
+player_size = 40
+
+game = True
+
 while game:
-    # ----- Trata eventos
+    
     for event in pygame.event.get():
-        # ----- Verifica consequências
+        
         if event.type == pygame.QUIT:
             game = False
+    
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_a]:
+        player_x -= player_speed
+    if keys[pygame.K_d]:
+        player_x += player_speed
+    if keys[pygame.K_w]:
+        player_y -= player_speed
+    if keys[pygame.K_s]:
+        player_y += player_speed
 
-    # ----- Gera saídas
-    window.fill((0, 0, 0))  # Preenche com a cor branca
-    window.blit(image, (10, 10))
+    camera_x = player_x - WIDTH // 2
+    camera_y = player_y - HEIGHT // 2
 
-    # ----- Atualiza estado do jogo
-    pygame.display.update()  # Mostra o novo frame para o jogador
+    camera_x = max(0, min(camera_x, map_width - WIDTH))
+    camera_y = max(0, min(camera_y, map_height - HEIGHT))
 
-# ===== Finalização =====
-pygame.quit()  # Função do PyGame que finaliza os recursos utilizados
+    window.fill((0, 0, 0))  
+    window.blit(mapa, (-camera_x, -camera_y))
+
+    pygame.draw.rect(
+        window,
+        (255, 0, 0),
+        (
+            player_x - camera_x,
+            player_y - camera_y,
+            player_size,
+            player_size
+        )
+    )
+
+    pygame.display.update()  
+    clock.tick(60)
+pygame.quit()  
