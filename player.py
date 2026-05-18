@@ -45,7 +45,7 @@ class Player:
             ],
         }
 
-        # Resize all sprites to 32x32
+
         for direction in self.animations:
             for i in range(len(self.animations[direction])):
                 self.animations[direction][i] = pygame.transform.scale(
@@ -53,39 +53,60 @@ class Player:
                     (self.width, self.height)
                 )
 
-    def move(self, keys):
+    def move(self, keys, mask, is_collision, is_ledge):
+    
         moving = False
 
         old_direction = self.direction
 
-        new_x = self.x
-        new_y = self.y
+        old_x = self.x
+        old_y = self.y
+
+        dx = 0
+        dy = 0
 
         if keys[pygame.K_w] or keys[pygame.K_UP]:
-            new_y -= self.speed
+            dy -= self.speed
             self.direction = "up"
             moving = True
 
         elif keys[pygame.K_s] or keys[pygame.K_DOWN]:
-            new_y += self.speed
+            dy += self.speed
             self.direction = "down"
             moving = True
 
         elif keys[pygame.K_a] or keys[pygame.K_LEFT]:
-            new_x -= self.speed
+            dx -= self.speed
             self.direction = "left"
             moving = True
 
         elif keys[pygame.K_d] or keys[pygame.K_RIGHT]:
-            new_x += self.speed
+            dx += self.speed
             self.direction = "right"
             moving = True
 
         if self.direction != old_direction:
             self.frame_index = 0
 
-        self.x = new_x
-        self.y = new_y
+
+        self.x += dx
+
+        if is_collision(mask, self.get_rect()):
+            self.x = old_x
+
+        elif is_ledge(mask, self.get_rect()):
+            self.x = old_x
+
+        
+
+
+        self.y += dy
+
+        if is_collision(mask, self.get_rect()):
+            self.y = old_y
+
+        elif is_ledge(mask, self.get_rect()) and dy < 0:
+            self.y = old_y
 
         if moving:
             self.animate()
@@ -109,8 +130,7 @@ class Player:
     
     def get_rect(self):
         return pygame.Rect(
-            self.x,
-            self.y,
-            self.width,
-            self.height
-        )
+            self.x + 6,
+            self.y + 16,
+            self.width - 12,
+            self.height - 12)

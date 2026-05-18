@@ -5,7 +5,7 @@ from player import Player
 from battle_ui import *
 from battle import *
 from pokemon import *
-from map import load_map, draw_map
+from map import *
 
 
 pygame.init()
@@ -24,11 +24,14 @@ pygame.display.set_caption('Matias, Lucas, Gabriel')
 # ----- Inicia estruturas de dados
 tick = pygame.time.Clock()
 mapa = load_map()
+mask = load_mask()
 mapa_width = mapa.get_width()
 mapa_height = mapa.get_height()
 game = True
 game_mode = 'andando'
-player = Player(100,100)
+player = Player(182,522)
+print(mapa.get_size())
+print(mask.get_size())
 
 
 # ===== Loop principal =====
@@ -50,11 +53,16 @@ while game:
     if keys[pygame.K_b]:
         game_mode = 'batalha'
     if game_mode == 'andando':
-        player.move(keys)
+        loc_x_antiga = player.x
+        loc_y_antiga = player.y
+
+        player.move(keys, mask, is_collision, is_ledge)
         player.x = max(0, min(player.x, mapa_width - player.width))
         player.y = max(0, min(player.y, mapa_height - player.height))
         camera_x = player.x - width_base // 2
         camera_y = player.y - height_base // 2
+        
+
 
         camera_x = max(0, min(camera_x, mapa_width - width_base))
         camera_y = max(0, min(camera_y, mapa_height - height_base))
