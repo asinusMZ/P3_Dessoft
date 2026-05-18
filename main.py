@@ -62,8 +62,10 @@ while game:
     elif game_mode == 'batalha':
         mostra_caixa_acoes = False
         desenha_tela(tela_base, fonte)
-        if keys[pygame.K_RETURN]:
-            mostra_caixa_acoes = True
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN:
+                    mostra_caixa_acoes = not mostra_caixa_acoes
         if mostra_caixa_acoes == True:
             desenha_caixas('acoes', tela_base)
         
