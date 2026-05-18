@@ -4,7 +4,6 @@ map = pygame.image.load("assets/rota1.png")
 
 def load_map():
     map = pygame.image.load("assets/rota1.png").convert()
-    map = pygame.transform.scale(map, (160, 160))
     return map
 
 

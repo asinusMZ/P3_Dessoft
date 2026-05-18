@@ -9,9 +9,9 @@ class Player:
         self.x = x
         self.y = y
 
-        self.width = 32
-        self.height = 32
-        self.speed = 4
+        self.width = 24
+        self.height = 24
+        self.speed = 3
 
         self.direction = "down"
         self.frame_index = 0
