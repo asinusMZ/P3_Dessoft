@@ -1,11 +1,10 @@
 import pygame
 
-map = pygame.image.load("assets/rota1.png")
 
 def load_map():
-    map = pygame.image.load("assets/rota1.png").convert()
-    return map
+    mapa = pygame.image.load("assets/rota1.png").convert()
+    return mapa
 
 
-def draw_map(screen, map):
-    screen.blit(map, (0,0))
+def draw_map(surface, mapa, camera_x, camera_y):
+    surface.blit(mapa, (-camera_x, -camera_y))

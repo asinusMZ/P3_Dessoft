@@ -9,9 +9,9 @@ class Player:
         self.x = x
         self.y = y
 
-        self.width = 24
-        self.height = 24
-        self.speed = 3
+        self.width = 16
+        self.height = 16
+        self.speed = 2
 
         self.direction = "down"
         self.frame_index = 0
@@ -103,10 +103,10 @@ class Player:
             if self.frame_index >= len(self.animations[self.direction]):
                 self.frame_index = 0
 
-    def draw(self, screen):
+    def draw(self, screen, camera_x=0, camera_y=0):
         current_sprite = self.animations[self.direction][self.frame_index]
-        screen.blit(current_sprite, (self.x, self.y))
-
+        screen.blit(current_sprite, (self.x - camera_x, self.y - camera_y))
+    
     def get_rect(self):
         return pygame.Rect(
             self.x,

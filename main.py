@@ -5,7 +5,8 @@ from player import Player
 from battle_ui import *
 from battle import *
 from pokemon import *
-from map import *
+from map import load_map, draw_map
+
 
 pygame.init()
 fonte = pygame.font.Font(None, 16)
@@ -22,7 +23,9 @@ pygame.display.set_caption('Matias, Lucas, Gabriel')
 
 # ----- Inicia estruturas de dados
 tick = pygame.time.Clock()
-map = load_map()
+mapa = load_map()
+mapa_width = mapa.get_width()
+mapa_height = mapa.get_height()
 game = True
 game_mode = 'andando'
 player = Player(100,100)
@@ -45,8 +48,17 @@ while game:
         game_mode = 'batalha'
     if game_mode == 'andando':
         player.move(keys)
-        draw_map(screen, map)
-        player.draw(tela_base) 
+        player.x = max(0, min(player.x, mapa_width - player.width))
+        player.y = max(0, min(player.y, mapa_height - player.height))
+        camera_x = player.x - width_base // 2
+        camera_y = player.y - height_base // 2
+
+        camera_x = max(0, min(camera_x, mapa_width - width_base))
+        camera_y = max(0, min(camera_y, mapa_height - height_base))
+
+        draw_map(tela_base, mapa, camera_x, camera_y)
+
+        player.draw(tela_base, camera_x, camera_y)
     elif game_mode == 'batalha':
         mostra_caixa_acoes = False
         desenha_tela(tela_base, fonte)
