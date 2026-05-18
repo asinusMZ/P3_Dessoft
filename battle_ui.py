@@ -1,7 +1,7 @@
 import pygame
-
-
-
+from pokemon import *
+import json
+from models import *
 class SpriteSheet: #IA
     def __init__(self, path):
         self.sheet = pygame.image.load(path)
@@ -28,7 +28,7 @@ sublinhado = sprite_sheet.get_sprite(187, 24, 264-187, 36-24)
 barra_de_vida = sprite_sheet.get_sprite(22, 178, 91-22, 184-178)
 caixa_de_texto = sprite_sheet.get_sprite(8, 104, 167-8, 151-104)
 caixa_de_acoes = sprite_sheet.get_sprite(72,256,167-72,303-256)
-setinha = sprite_sheet.get_sprite(47,415,55-47,424-415)
+setinha = sprite_sheet.get_sprite(344,72,351-344,79-71)
 caixa_de_ataques = sprite_sheet.get_sprite(8, 376, 167-8, 455-376)
 
 charmander = sprites_pokemons.get_sprite(424, 140, 455-424, 171-140)
@@ -37,13 +37,19 @@ pikachu = sprites_pokemons.get_sprite(522,378,561-522, 417-378)
 lista_sprites = [sublinhado, barra_de_vida, caixa_de_texto, caixa_de_acoes, setinha, caixa_de_ataques]
 lista_pokemons = [charmander, pikachu]
 
+with open('pokemons_ataque.json') as f:
+    dicionario_ataques = json.load(f)
 
 
+player = 'charmander'
+enemy = 'Pikachu'
 
+
+ataques = pega_ataques(enemy, dicionario_ataques)
 def desenha_tela(tela, fonte):
-    tela.fill((245, 245, 245))  # Preenche com a cor branca
+    tela.fill((245, 245, 245))
 
-    texto = fonte.render("pika wants to fight", False, (0, 0, 0))
+    texto = fonte.render(f"{enemy} wants to fight", False, (0, 0, 0))
     tela.blit(charmander, (2, 70))
     tela.blit(pikachu, (100, 20))
     tela.blit(sublinhado, (8,10))
@@ -63,13 +69,22 @@ def desenha_caixas(caixa, tela, fonte):
         tela.blit(texto, (74, 125))
     elif caixa == 'ataques':
         tela.blit(caixa_de_ataques, (0, 80))
-        texto = fonte.render("Bola de fogo", False, (0,0,0))
+
+
+        texto = fonte.render(ataques[0].name, False, (0,0,0))
         tela.blit(texto, (53, 117))
-        texto = fonte.render("pau quentinho", False, (0,0,0))
+        texto = fonte.render(ataques[1].name, False, (0,0,0))
         tela.blit(texto, (53, 127))
-def desenha_seta(caixa, tela, selected):
+def desenha_seta(caixa, tela, selected, fonte):
     if caixa == 'acoes':
         if selected == 'fight':
             tela.blit(setinha, (67, 110))
         elif selected == 'run':
             tela.blit(setinha, (67, 125))
+    elif caixa == 'ataques':
+            tela.blit(setinha, (45, 117))
+            texto = fonte.render(f"Type: {ataques[selected].move_type}", False, (0,0,0))
+            tela.blit(texto, (8,90))
+            texto = fonte.render(f" {ataques[selected].current_pp} / {ataques[selected].pp}", False, (0,0,0))
+            tela.blit(texto, (8,100))
+

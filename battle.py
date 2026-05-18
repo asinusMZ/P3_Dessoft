@@ -1,24 +1,15 @@
 import random
 import pygame
 from battle_ui import *
+from pokemon import *
+from models import Move
 
 mostra_caixa_acoes = False
 mostra_caixa_ataques = False
 selected = 'fight'
-class Move: #IA
-    def __init__(self, name, move_type, power, accuracy, pp):
-        self.name = name          # "Lança-Chamas"
-        self.move_type = move_type  # "Fogo"
-        self.power = power        # 90  (quão forte é)
-        self.accuracy = accuracy  # 100 (% de chance de acertar)
-        self.pp = pp              # 15  (quantas vezes pode usar)
-        self.current_pp = pp      # PP atual (vai diminuindo)
+selected_attack = 0
 
-    def use(self):
-        if self.current_pp > 0:
-            self.current_pp -= 1
-            return True
-        return False  # sem PP, não pode usar
+
 
 class battle:
     def __init__(self, player_pokemon, enemy_pokemon):
@@ -50,8 +41,8 @@ class battle:
             return "INIMIGO"
         return None
     
-def handle_input(event): #IA
-    global mostra_caixa_acoes, mostra_caixa_ataques, selected
+def handle_input(event):
+    global mostra_caixa_acoes, mostra_caixa_ataques, selected, selected_attack #IA
 
     if not mostra_caixa_acoes:
         if event.key == pygame.K_RETURN:
@@ -62,13 +53,20 @@ def handle_input(event): #IA
         if event.key == pygame.K_DOWN:
             selected = 'run'
         if event.key == pygame.K_UP:
+            selected_attack = 0
+        if event.key == pygame.K_DOWN:
+            selected_attack = 1
+        if event.key == pygame.K_UP:
             selected = 'fight'
         if selected == 'fight' and event.key == pygame.K_RETURN:
             mostra_caixa_ataques = True
+        
 
 def draw_battle(tela, fonte):
     if mostra_caixa_acoes:
         desenha_caixas('acoes', tela, fonte)
-        desenha_seta('acoes', tela, selected)
+        desenha_seta('acoes', tela, selected, fonte)
         if mostra_caixa_ataques:
             desenha_caixas('ataques', tela, fonte)
+            desenha_seta('ataques', tela, selected_attack, fonte)
+
