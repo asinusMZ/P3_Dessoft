@@ -40,7 +40,10 @@ def is_collision(mask, rect):
             return True 
         return False
     
-def is_grama(mask, rect): 
+def is_grass(mask, rect): 
     center_x = rect.centerx 
     center_y = rect.centery 
     return get_mask_color(mask, center_x, center_y) == verde
+
+def is_ledge(mask, rect):
+    return get_mask_color(mask, rect.midbottom[0], rect.midbottom[1]) == amarelo

@@ -53,7 +53,7 @@ class Player:
                     (self.width, self.height)
                 )
 
-    def move(self, keys, mask, is_collision):
+    def move(self, keys, mask, is_collision, is_ledge):
     
         moving = False
 
@@ -94,10 +94,18 @@ class Player:
         if is_collision(mask, self.get_rect()):
             self.x = old_x
 
+        elif is_ledge(mask, self.get_rect()):
+            self.x = old_x
+
+        
+
 
         self.y += dy
 
         if is_collision(mask, self.get_rect()):
+            self.y = old_y
+
+        elif is_ledge(mask, self.get_rect()) and dy < 0:
             self.y = old_y
 
         if moving:
