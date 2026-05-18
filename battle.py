@@ -1,5 +1,10 @@
 import random
+import pygame
+from battle_ui import *
 
+mostra_caixa_acoes = False
+mostra_caixa_ataques = False
+selected = 'fight'
 class Move: #IA
     def __init__(self, name, move_type, power, accuracy, pp):
         self.name = name          # "Lança-Chamas"
@@ -44,3 +49,26 @@ class battle:
         if self.player.is_fainted():
             return "INIMIGO"
         return None
+    
+def handle_input(event): #IA
+    global mostra_caixa_acoes, mostra_caixa_ataques, selected
+
+    if not mostra_caixa_acoes:
+        if event.key == pygame.K_RETURN:
+            mostra_caixa_acoes = True
+    else:
+        if event.key == pygame.K_ESCAPE:
+            mostra_caixa_acoes = False
+        if event.key == pygame.K_DOWN:
+            selected = 'run'
+        if event.key == pygame.K_UP:
+            selected = 'fight'
+        if selected == 'fight' and event.key == pygame.K_RETURN:
+            mostra_caixa_ataques = True
+
+def draw_battle(tela, fonte):
+    if mostra_caixa_acoes:
+        desenha_caixas('acoes', tela, fonte)
+        desenha_seta('acoes', tela, selected)
+        if mostra_caixa_ataques:
+            desenha_caixas('ataques', tela, fonte)
