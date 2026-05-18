@@ -114,3 +114,17 @@ class Player:
             self.width,
             self.height
         )
+    
+    def gethits(self, tiles):
+        hits = []
+        for tile in tiles:
+            if self.rect.colliderect(tile):
+                hits.append(tile)
+        return hits
+
+
+    def checkCollisionsx(self, tiles):
+        collisions = self.gethits(tiles)
+        if self.velocity.x > 0:
+            self.position.x = tile.rect.left - self.rect.w
+            self 
