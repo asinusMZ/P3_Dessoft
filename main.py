@@ -56,15 +56,13 @@ while game:
         loc_x_antiga = player.x
         loc_y_antiga = player.y
 
-        player.move(keys)
+        player.move(keys, mask, is_collision)
         player.x = max(0, min(player.x, mapa_width - player.width))
         player.y = max(0, min(player.y, mapa_height - player.height))
         camera_x = player.x - width_base // 2
         camera_y = player.y - height_base // 2
         
-        if is_collision(mask, player.get_rect()):
-            player.x = loc_x_antiga
-            player.y = loc_y_antiga
+
 
         camera_x = max(0, min(camera_x, mapa_width - width_base))
         camera_y = max(0, min(camera_y, mapa_height - height_base))
