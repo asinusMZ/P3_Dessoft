@@ -30,6 +30,8 @@ mapa_height = mapa.get_height()
 game = True
 game_mode = 'andando'
 player = Player(182,522)
+print(mapa.get_size())
+print(mask.get_size())
 
 
 # ===== Loop principal =====

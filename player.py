@@ -109,11 +109,10 @@ class Player:
     
     def get_rect(self):
         return pygame.Rect(
-            self.x,
-            self.y,
-            self.width,
-            self.height
-        )
+            self.x + 6,
+            self.y + 16,
+            self.width - 12,
+            self.height - 16)
     
     def gethits(self, tiles):
         hits = []

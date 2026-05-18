@@ -6,7 +6,7 @@ verde = (0, 255, 0)
 
 
 def load_map():
-    mapa = pygame.image.load("assets/rota1masks.png").convert()
+    mapa = pygame.image.load("assets/rota1.png").convert()
     return mapa
 
 def load_mask():
@@ -24,7 +24,17 @@ def get_mask_color(mask, x, y):
     return color[:3]
 
 def is_collision(mask, rect): 
-    pontos = [ rect.topleft, rect.topright, rect.bottomleft, rect.bottomright, rect.midbottom, ] 
+    pontos = [
+        rect.topleft,
+        rect.topright,
+        rect.bottomleft,
+        rect.bottomright,
+        rect.center,
+        rect.midbottom,
+        rect.midtop,
+        rect.midleft,
+        rect.midright,
+    ]
     for x, y in pontos: 
         if get_mask_color(mask, x, y) == rosa: 
             return True 
