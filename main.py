@@ -31,12 +31,15 @@ game_mode = 'andando'
 player = Player(100,100)
 
 
-
 # ===== Loop principal =====
 while game:
     tick.tick(60)
     # ----- Trata eventos
     for event in pygame.event.get():
+
+        if event.type == pygame.KEYDOWN:
+            if game_mode == 'batalha':
+                handle_input(event)
         # ----- Verifica consequências
         if event.type == pygame.QUIT:
             game = False
@@ -60,14 +63,8 @@ while game:
 
         player.draw(tela_base, camera_x, camera_y)
     elif game_mode == 'batalha':
-        mostra_caixa_acoes = False
         desenha_tela(tela_base, fonte)
-        for event in pygame.event.get():
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_RETURN:
-                    mostra_caixa_acoes = not mostra_caixa_acoes
-        if mostra_caixa_acoes == True:
-            desenha_caixas('acoes', tela_base)
+        draw_battle(tela_base, fonte)
         
 
     # ----- Atualiza estado do jogo
