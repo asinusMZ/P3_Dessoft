@@ -1,4 +1,6 @@
-# arquivo so pra nao ficar dando erro de importacao
+# arquivo so pra nao ficar dando erro de importacao circular
+import json
+from pokemon import *
 
 class Move: #IA
     def __init__(self, name, move_type, power, accuracy, pp):
@@ -15,18 +17,51 @@ class Move: #IA
             return True
         return False  # sem PP, não pode usar
     
-def pega_ataques(nome, dic):
-    pokemon_data = None
-    for i in dic:
-        if i['name'] == nome:
-            pokemon_data = i
-            break
-    
+def pega_ataques(poke_data):
+    pokemon_data = poke_data
+
     if pokemon_data == None:
         return []
 
-    lista_ataques = pokemon_data['moves']
-    for i in range(0,len(lista_ataques)):
-        ataque = lista_ataques[i]
-        lista_ataques[i] = Move(ataque['name'], ataque['type'], ataque['power'], ataque['accuracy'], ataque['pp'])
-    return lista_ataques
+    lista_ataques = pokemon_data.moves
+    ataques_convertidos = []
+
+    for ataque in lista_ataques:
+        ataques_convertidos.append(
+            Move(
+                ataque["name"],
+                ataque["type"],
+                ataque["power"],
+                ataque["accuracy"],
+                ataque["pp"],
+            )
+        )
+
+    return ataques_convertidos
+
+
+with open('pokemons_ataque.json') as f:
+    dicionario_ataques = json.load(f)
+
+for poke in dicionario_ataques:
+    if poke["name"] == "Charmander":
+        player = pokemon(poke["name"],
+                         poke['hp'],
+                         poke['defense'],
+                         poke['moves'],
+                         poke['attack']
+                         )
+        break
+for poke in dicionario_ataques:
+    if poke["name"] == "Pikachu":
+        enemy = pokemon(poke["name"],
+                         poke['hp'],
+                         poke['defense'],
+                         poke['moves'],
+                         poke['attack']
+                         )
+        break
+
+ataques_player = pega_ataques(player)
+ataques_enemy = pega_ataques(enemy)
+print(ataques_player)
