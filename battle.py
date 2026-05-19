@@ -110,7 +110,7 @@ def draw_battle(tela, fonte):
                 desenha_seta('ataques', tela, selected_attack, fonte)
     elif batalha.state == "TURNO_INIMIGO":
         if tempo_inicio == 0:
-            tempo_inicio = pygame.time.get_ticks()s
+            tempo_inicio = pygame.time.get_ticks()
         if pygame.time.get_ticks() - tempo_inicio >= 2000:
             tempo_inicio = 0
             battle.enemy_attack(batalha)
