@@ -50,7 +50,7 @@ for poke in dicionario_ataques:
 
 
 
-ataques = ataques_player
+ataques = player.moves
 def desenha_tela(tela, fonte):
     tela.fill((245, 245, 245))
 
@@ -66,7 +66,7 @@ def desenha_tela(tela, fonte):
         hp_player,
         (int(largura_hp_enemy), 2)
 )
-    texto = fonte.render(f"{enemy.name} wants to fight", False, (0, 0, 0))
+
     tela.blit(charmander, (2, 70))
     tela.blit(pikachu, (100, 20))
     tela.blit(sublinhado, (8,10))
@@ -76,6 +76,9 @@ def desenha_tela(tela, fonte):
     tela.blit(barra_de_vida, (86,94))
     tela.blit(hp_enemy_barra, (104,95))
     tela.blit(caixa_de_texto, (0, 112))
+
+def desenha_mensagem(tela, fonte, texto):
+    texto = fonte.render(texto, False, (0,0,0))
     tela.blit(texto, (5, 120))
 
 

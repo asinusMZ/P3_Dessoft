@@ -9,7 +9,7 @@ from map import *
 
 
 pygame.init()
-fonte = pygame.font.Font(None, 16)
+fonte = pygame.font.Font(None, 14)
 # ----- Gera tela principal
 width_base = 160
 height_base = 160

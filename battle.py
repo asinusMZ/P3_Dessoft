@@ -1,7 +1,7 @@
 import random
 import pygame
 from pokemon import *
-from models import Move
+from models import *
 from battle_ui import *
 
 
@@ -9,32 +9,32 @@ mostra_caixa_acoes = False
 mostra_caixa_ataques = False
 selected = 'fight'
 selected_attack = 0
-
-
+tempo_inicio = 0
 
 class battle:
     def __init__(self, player_pokemon, enemy_pokemon):
         self.player = player_pokemon
         self.enemy = enemy_pokemon
         self.state = "ESCOLHA_ACAO"
-        self.message = ""
+        self.message = f"{self.enemy.name} wants to fight"
 
     
     def player_attack(self, move):
         damage = self.calculate_damage(move, self.player, self.enemy)
-        print(damage)
         self.enemy.take_damage(damage)
         self.message = f"{self.player.name} usou {move.name}!"
+        move.use()
         self.state = "TURNO_INIMIGO"
-        print(self.enemy.vida)
     def enemy_attack(self):
         move = random.choice(self.enemy.moves)
         damage = self.calculate_damage(move, self.enemy, self.player)
         self.player.take_damage(damage)
         self.message = f"{self.enemy.name} usou {move.name}"
+        move.use()
+        self.state = "ESCOLHA_ACAO"
     
     def calculate_damage(self, move, attacker, defender):
-        return int((move.power + attacker.attack) / defender.defense)
+        return int((move.power + attacker.attack) / (defender.defense/2))
     
     def check_winner(self):
         if self.enemy.is_fainted():
@@ -65,7 +65,7 @@ def handle_input(event): #IA
             return
 
         elif event.key == pygame.K_RETURN:
-            battle.player_attack(batalha, ataques_player[selected_attack])
+            battle.player_attack(batalha, player.moves[selected_attack])
             mostra_caixa_ataques = False
             mostra_caixa_acoes = False
             return
@@ -99,6 +99,8 @@ def handle_input(event): #IA
             return
 
 def draw_battle(tela, fonte):
+    global tempo_inicio
+    desenha_mensagem(tela, fonte, batalha.message)
     if batalha.state == 'ESCOLHA_ACAO':
         if mostra_caixa_acoes:
             desenha_caixas('acoes', tela, fonte)
@@ -106,4 +108,12 @@ def draw_battle(tela, fonte):
             if mostra_caixa_ataques:
                 desenha_caixas('ataques', tela, fonte)
                 desenha_seta('ataques', tela, selected_attack, fonte)
+    elif batalha.state == "TURNO_INIMIGO":
+        if tempo_inicio == 0:
+            tempo_inicio = pygame.time.get_ticks()s
+        if pygame.time.get_ticks() - tempo_inicio >= 2000:
+            tempo_inicio = 0
+            battle.enemy_attack(batalha)
+
+
 

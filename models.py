@@ -62,6 +62,5 @@ for poke in dicionario_ataques:
                          )
         break
 
-ataques_player = pega_ataques(player)
-ataques_enemy = pega_ataques(enemy)
-print(ataques_player)
+player.moves = pega_ataques(player)
+enemy.moves = pega_ataques(enemy)
