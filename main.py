@@ -73,6 +73,8 @@ while game:
     elif game_mode == 'batalha':
         desenha_tela(tela_base, fonte)
         draw_battle(tela_base, fonte)
+        if batalha.check_winner() != None:
+            game_mode = 'andando'
         
 
     # ----- Atualiza estado do jogo

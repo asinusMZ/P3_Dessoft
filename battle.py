@@ -37,9 +37,9 @@ class battle:
         return int((move.power + attacker.attack) / (defender.defense/2))
     
     def check_winner(self):
-        if self.enemy.is_fainted():
+        if self.enemy.is_fainted(self.enemy.vida):
             return "JOGADOR"
-        if self.player.is_fainted():
+        if self.player.is_fainted(self.player.vida):
             return "INIMIGO"
         return None
     
@@ -114,6 +114,7 @@ def draw_battle(tela, fonte):
         if pygame.time.get_ticks() - tempo_inicio >= 2000:
             tempo_inicio = 0
             battle.enemy_attack(batalha)
+
 
 
 
