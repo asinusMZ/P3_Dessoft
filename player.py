@@ -11,7 +11,7 @@ class Player:
 
         self.width = 16
         self.height = 16
-        self.speed = 2
+        self.speed = 1
 
         self.direction = "down"
         self.frame_index = 0

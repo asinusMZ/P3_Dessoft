@@ -6,6 +6,7 @@ from battle_ui import *
 from battle import *
 from pokemon import *
 from map import *
+from npc import NPC
 
 game_mode = 'andando'
 pygame.init()
@@ -28,7 +29,8 @@ mask = load_mask()
 mapa_width = mapa.get_width()
 mapa_height = mapa.get_height()
 game = True
-player = Player(182,522)
+player = Player(175,500)
+npc_cura = NPC(175, 470)
 print(mapa.get_size())
 print(mask.get_size())
 
@@ -69,6 +71,8 @@ while game:
         draw_map(tela_base, mapa, camera_x, camera_y)
 
         player.draw(tela_base, camera_x, camera_y)
+        npc_cura.draw(tela_base, camera_x, camera_y)
+
     elif game_mode == 'batalha':
         desenha_tela(tela_base, fonte)
         game_mode = draw_battle(tela_base, fonte)
