@@ -7,7 +7,7 @@ from battle import *
 from pokemon import *
 from map import *
 
-
+game_mode = 'andando'
 pygame.init()
 fonte = pygame.font.Font(None, 14)
 # ----- Gera tela principal
@@ -28,7 +28,6 @@ mask = load_mask()
 mapa_width = mapa.get_width()
 mapa_height = mapa.get_height()
 game = True
-game_mode = 'andando'
 player = Player(182,522)
 print(mapa.get_size())
 print(mask.get_size())
@@ -72,9 +71,7 @@ while game:
         player.draw(tela_base, camera_x, camera_y)
     elif game_mode == 'batalha':
         desenha_tela(tela_base, fonte)
-        draw_battle(tela_base, fonte)
-        if batalha.check_winner() != None:
-            game_mode = 'andando'
+        game_mode = draw_battle(tela_base, fonte)
         
 
     # ----- Atualiza estado do jogo

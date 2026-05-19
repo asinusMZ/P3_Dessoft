@@ -38,6 +38,7 @@ class battle:
     
     def check_winner(self):
         if self.enemy.is_fainted(self.enemy.vida):
+            self.message = f'{self.enemy.name} foi derrotado!'
             return "JOGADOR"
         if self.player.is_fainted(self.player.vida):
             return "INIMIGO"
@@ -114,6 +115,13 @@ def draw_battle(tela, fonte):
         if pygame.time.get_ticks() - tempo_inicio >= 2000:
             tempo_inicio = 0
             battle.enemy_attack(batalha)
+    batalha.check_winner()
+    if batalha.check_winner() != None:
+        batalha.state = "ESCOLHA_ACAO"
+        if pygame.time.get_ticks() - tempo_inicio >= 2000:
+            tempo_inicio = 0
+            return 'andando'
+    return 'batalha'
 
 
 
