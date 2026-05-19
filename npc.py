@@ -8,8 +8,12 @@ class NPC:
         self.width = 16
         self.height = 16
 
-        self.image = pygame.Surface((self.width, self.height))
-        self.image.fill((0, 0, 255))
+        self.load_sprite()
+
+    def load_sprite(self):
+        sheet = SpriteSheet("assets/pokecharacters.png", (255, 127, 39))
+
+        self.image = sheet.get_sprite(26, 306, 15, 15)
 
     def draw(self, surface, camera_x, camera_y):
         surface.blit(self.image, (self.x - camera_x, self.y - camera_y))
