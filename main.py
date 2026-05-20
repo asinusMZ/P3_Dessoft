@@ -35,7 +35,7 @@ musica_atual = None
 
 def toca_musica(path, volume=0.5):
     global musica_atual
-    musica_atual = path
+
 
     if musica_atual != path:
         pygame.mixer.music.stop()
@@ -43,6 +43,8 @@ def toca_musica(path, volume=0.5):
         pygame.mixer.music.set_volume(volume)
         pygame.mixer.music.play(-1)
         musica_atual = path
+
+toca_musica("assets/sounds/inicio.mp3", 0.5)
     
 # ----- Inicia estruturas de dados
 tick = pygame.time.Clock()
@@ -103,7 +105,7 @@ while game:
     elif game_mode == 'inicio':
         inicio = tela_inicio()
         draw_inicio(tela_base, inicio)
-        toca_musica("assets/sounds/inicio.mp3", 0.5)
+
         if keys[pygame.K_RETURN]:
             game_mode = 'andando'
             toca_musica("assets/sounds/Route1.mp3", 0.5)
