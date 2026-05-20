@@ -10,6 +10,15 @@ mostra_caixa_ataques = False
 selected = 'fight'
 selected_attack = 0
 tempo_inicio = 0
+tempo_vitoria = 0
+musica_vitoria_tocou = False
+
+def tocar_vitoria():
+    pygame.mixer.music.stop()
+    pygame.mixer.music.load("assets/sounds/victory.mp3")
+    pygame.mixer.music.set_volume(0.7)
+    pygame.mixer.music.play(0)
+
 
 class battle:
     def __init__(self, player_pokemon, enemy_pokemon):
@@ -115,14 +124,29 @@ def draw_battle(tela, fonte):
         if pygame.time.get_ticks() - tempo_inicio >= 2000:
             tempo_inicio = 0
             battle.enemy_attack(batalha)
-    batalha.check_winner()
-    if batalha.check_winner() != None:
-        batalha.state = "ESCOLHA_ACAO"
-        if pygame.time.get_ticks() - tempo_inicio >= 2000:
-            tempo_inicio = 0
-            return 'andando'
-    return 'batalha'
+        elif batalha.state == "VITORIA":
+            if not musica_vitoria_tocou:
+                tocar_vitoria()
+                musica_vitoria_tocou = True
+                tempo_vitoria = pygame.time.get_ticks()
+            if pygame.time.get_ticks() - tempo_vitoria >= 4000:
+                musica_vitoria_tocou = False
+                tempo_vitoria = 0
+                return 'andando'
+        return 'batalha'
 
+    vencedor = batalha.check_winner()
+
+    if vencedor == "JOGADOR":
+        batalha.state = "VITORIA"
+        batalha.message = f"{batalha.enemy.name} foi derrotado!"
+        return 'batalha'
+
+    elif vencedor == "INIMIGO":
+        batalha.message = f"{batalha.player.name} foi derrotado!"
+        return 'andando'
+
+    return 'batalha'
 
 
 

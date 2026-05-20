@@ -101,6 +101,7 @@ while game:
     elif game_mode == 'batalha':
         desenha_tela(tela_base, fonte)
         game_mode = draw_battle(tela_base, fonte)
+        toca_musica("assets/sounds/battle.mp3", 0.5)
         
     elif game_mode == 'inicio':
         inicio = tela_inicio()
