@@ -72,10 +72,11 @@ def desenha_tela(tela, fonte):
     tela.blit(sublinhado, (8,10))
     tela.blit(pygame.transform.flip(sublinhado, True, False), (81,98))
     tela.blit(barra_de_vida, (11,13))
-    tela.blit(hp_player_barra, (29,14))
     tela.blit(barra_de_vida, (86,94))
-    tela.blit(hp_enemy_barra, (104,95))
+    tela.blit(hp_enemy_barra, (29,14))
     tela.blit(caixa_de_texto, (0, 112))
+    tela.blit(hp_player_barra, (104,95))
+    
 
 def desenha_mensagem(tela, fonte, texto):
     texto = fonte.render(texto, False, (0,0,0))

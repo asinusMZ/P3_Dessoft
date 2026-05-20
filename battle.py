@@ -12,6 +12,7 @@ selected_attack = 0
 tempo_inicio = 0
 tempo_vitoria = 0
 musica_vitoria_tocou = False
+pode_atacar = 'True'
 
 def tocar_vitoria():
     pygame.mixer.music.stop()
@@ -74,7 +75,7 @@ def handle_input(event): #IA
             selected_attack = 1
             return
 
-        elif event.key == pygame.K_RETURN:
+        elif event.key == pygame.K_RETURN and pode_atacar:
             battle.player_attack(batalha, player.moves[selected_attack])
             mostra_caixa_ataques = False
             mostra_caixa_acoes = False
@@ -109,9 +110,10 @@ def handle_input(event): #IA
             return
 
 def draw_battle(tela, fonte):
-    global tempo_inicio, tempo_vitoria, musica_vitoria_tocou
+    global tempo_inicio, tempo_vitoria, musica_vitoria_tocou, pode_atacar
     desenha_mensagem(tela, fonte, batalha.message)
     if batalha.state == 'ESCOLHA_ACAO':
+        pode_atacar = True
         if mostra_caixa_acoes:
             desenha_caixas('acoes', tela, fonte)
             desenha_seta('acoes', tela, selected, fonte)
@@ -119,17 +121,19 @@ def draw_battle(tela, fonte):
                 desenha_caixas('ataques', tela, fonte)
                 desenha_seta('ataques', tela, selected_attack, fonte)
     elif batalha.state == "TURNO_INIMIGO":
+        pode_atacar = False
         if tempo_inicio == 0:
             tempo_inicio = pygame.time.get_ticks()
         if pygame.time.get_ticks() - tempo_inicio >= 2000:
             tempo_inicio = 0
             battle.enemy_attack(batalha)
     elif batalha.state == "VITORIA":
+        pode_atacar = False
         if not musica_vitoria_tocou:
             tocar_vitoria()
             musica_vitoria_tocou = True
             tempo_vitoria = pygame.time.get_ticks()
-        if pygame.time.get_ticks() - tempo_vitoria >= 4000:
+        if pygame.time.get_ticks() - tempo_vitoria >= 400:
             musica_vitoria_tocou = False
             tempo_vitoria = 0
             return 'andando'

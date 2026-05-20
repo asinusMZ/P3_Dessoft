@@ -1,7 +1,10 @@
 # arquivo so pra nao ficar dando erro de importacao circular
 import json
 from pokemon import *
+import random
 
+player = ''
+enemy = ''
 class Move: #IA
     def __init__(self, name, move_type, power, accuracy, pp):
         self.name = name          # "Lança-Chamas"
@@ -53,7 +56,7 @@ for poke in dicionario_ataques:
                          )
         break
 for poke in dicionario_ataques:
-    if poke["name"] == "Pikachu":
+    if poke["name"] == random.choice(dicionario_ataques)['name']:
         enemy = pokemon(poke["name"],
                          poke['hp'],
                          poke['defense'],
