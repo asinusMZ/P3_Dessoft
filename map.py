@@ -47,3 +47,11 @@ def is_grass(mask, rect):
 
 def is_ledge(mask, rect):
     return get_mask_color(mask, rect.midbottom[0], rect.midbottom[1]) == amarelo
+
+def draw_cover(surface, mapa, player, camera_x, camera_y):
+    altura_grama = player.height // 3
+
+    area_grama = pygame.Rect(player.x, player.y + player.height - altura_grama, player.width, altura_grama)
+
+    surface.blit(mapa, (player.x - camera_x, player.y + player.height - altura_grama - camera_y), area_grama)
+

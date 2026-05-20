@@ -93,6 +93,10 @@ while game:
         draw_map(tela_base, mapa, camera_x, camera_y)
 
         player.draw(tela_base, camera_x, camera_y)
+
+        if is_grass(mask, player.get_rect()):
+            draw_cover(tela_base, mapa, player, camera_x, camera_y)
+        
         npc_cura.draw(tela_base, camera_x, camera_y)
 
         if keys[pygame.K_b]:
