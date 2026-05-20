@@ -28,11 +28,22 @@ tela_base = pygame.Surface((width_base, height_base))
 frame_base = pygame.Surface((frame_width, frame_height))
 frame = pygame.image.load("assets/frame_blue_english.png").convert()
 pygame.display.set_caption('Matias, Lucas, Gabriel')
-#----- Musicas
-pygame.mixer.music.load("assets/sounds/Route1.mp3")
-pygame.mixer.music.set_volume(0.5)
-pygame.mixer.music.play(-1)
 
+
+#----- Musicas
+musica_atual = None
+
+def toca_musica(path, volume=0.5):
+    global musica_atual
+    musica_atual = path
+
+    if musica_atual != path:
+        pygame.mixer.music.stop()
+        pygame.mixer.music.load(path)
+        pygame.mixer.music.set_volume(volume)
+        pygame.mixer.music.play(-1)
+        musica_atual = path
+    
 # ----- Inicia estruturas de dados
 tick = pygame.time.Clock()
 mapa = load_map()
@@ -92,12 +103,15 @@ while game:
     elif game_mode == 'inicio':
         inicio = tela_inicio()
         draw_inicio(tela_base, inicio)
+        toca_musica("assets/sounds/inicio.mp3", 0.5)
         if keys[pygame.K_RETURN]:
             game_mode = 'andando'
+            toca_musica("assets/sounds/Route1.mp3", 0.5)
+
     # ----- Atualiza estado do jogo
     frame_base.blit(frame, (0, 0))  
     frame_base.blit(tela_base, (game_x, game_y))
-    tela_escalada = pygame.transform.scale(tela_base, (WIDTH, HEIGHT))
+    tela_escalada = pygame.transform.scale(frame_base, (WIDTH, HEIGHT))
     screen.blit(tela_escalada, (0, 0))
     pygame.display.update()  # Mostra o novo frame para o jogador
 
