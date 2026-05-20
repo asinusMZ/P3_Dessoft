@@ -7,8 +7,9 @@ from battle import *
 from pokemon import *
 from map import *
 from npc import NPC
+from inicio import *
 
-game_mode = 'andando'
+game_mode = 'inicio'
 pygame.init()
 fonte = pygame.font.Font(None, 14)
 # ----- Gera tela principal
@@ -51,8 +52,6 @@ while game:
     
     # ----- Gera saídas
     tela_base.fill((0, 0, 0)) # Preenche com a cor branca
-    if keys[pygame.K_b]:
-        game_mode = 'batalha'
     if game_mode == 'andando':
         loc_x_antiga = player.x
         loc_y_antiga = player.y
@@ -73,11 +72,18 @@ while game:
         player.draw(tela_base, camera_x, camera_y)
         npc_cura.draw(tela_base, camera_x, camera_y)
 
+        if keys[pygame.K_b]:
+            game_mode = 'batalha'
+
     elif game_mode == 'batalha':
         desenha_tela(tela_base, fonte)
         game_mode = draw_battle(tela_base, fonte)
         
-
+    elif game_mode == 'inicio':
+        inicio = tela_inicio()
+        draw_inicio(tela_base, inicio)
+        if keys[pygame.K_RETURN]:
+            game_mode = 'andando'
     # ----- Atualiza estado do jogo
     tela_escalada = pygame.transform.scale(tela_base, (WIDTH, HEIGHT))
     screen.blit(tela_escalada, (0, 0))

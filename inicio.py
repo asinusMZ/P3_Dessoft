@@ -6,7 +6,7 @@ def tela_inicio():
     return inicio
 
 def draw_inicio(surface, inicio,):
-    surface.blit(inicio, (-158, -144))
+    surface.blit(inicio, (0, 0))
 
 
 
