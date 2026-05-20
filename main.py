@@ -100,6 +100,7 @@ while game:
 
     elif game_mode == 'batalha':
             desenha_tela(tela_base, fonte)
+            toca_musica("assets/sounds/battle.mp3", 0.5)
             novo_modo = draw_battle(tela_base, fonte)
             if novo_modo == 'andando':
                 game_mode = 'andando'
