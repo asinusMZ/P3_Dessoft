@@ -99,10 +99,13 @@ while game:
             game_mode = 'batalha'
 
     elif game_mode == 'batalha':
-        desenha_tela(tela_base, fonte)
-        game_mode = draw_battle(tela_base, fonte)
-        toca_musica("assets/sounds/battle.mp3", 0.5)
-        
+            desenha_tela(tela_base, fonte)
+            novo_modo = draw_battle(tela_base, fonte)
+            if novo_modo == 'andando':
+                game_mode = 'andando'
+                toca_musica("assets/sounds/Route1.mp3", 0.5)
+            else:
+                game_mode = novo_modo
     elif game_mode == 'inicio':
         inicio = tela_inicio()
         draw_inicio(tela_base, inicio)

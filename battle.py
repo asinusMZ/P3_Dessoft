@@ -109,7 +109,7 @@ def handle_input(event): #IA
             return
 
 def draw_battle(tela, fonte):
-    global tempo_inicio
+    global tempo_inicio, tempo_vitoria, musica_vitoria_tocou
     desenha_mensagem(tela, fonte, batalha.message)
     if batalha.state == 'ESCOLHA_ACAO':
         if mostra_caixa_acoes:
@@ -124,15 +124,15 @@ def draw_battle(tela, fonte):
         if pygame.time.get_ticks() - tempo_inicio >= 2000:
             tempo_inicio = 0
             battle.enemy_attack(batalha)
-        elif batalha.state == "VITORIA":
-            if not musica_vitoria_tocou:
-                tocar_vitoria()
-                musica_vitoria_tocou = True
-                tempo_vitoria = pygame.time.get_ticks()
-            if pygame.time.get_ticks() - tempo_vitoria >= 4000:
-                musica_vitoria_tocou = False
-                tempo_vitoria = 0
-                return 'andando'
+    elif batalha.state == "VITORIA":
+        if not musica_vitoria_tocou:
+            tocar_vitoria()
+            musica_vitoria_tocou = True
+            tempo_vitoria = pygame.time.get_ticks()
+        if pygame.time.get_ticks() - tempo_vitoria >= 4000:
+            musica_vitoria_tocou = False
+            tempo_vitoria = 0
+            return 'andando'
         return 'batalha'
 
     vencedor = batalha.check_winner()
