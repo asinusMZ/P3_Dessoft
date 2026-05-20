@@ -38,7 +38,7 @@ def is_collision(mask, rect):
     for x, y in pontos: 
         if get_mask_color(mask, x, y) == rosa: 
             return True 
-        return False
+    return False
     
 def is_grass(mask, rect): 
     center_x = rect.centerx 

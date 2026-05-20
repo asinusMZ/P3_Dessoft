@@ -130,7 +130,7 @@ class Player:
     
     def get_rect(self):
         return pygame.Rect(
-            self.x + 6,
-            self.y + 16,
-            self.width - 12,
-            self.height - 12)
+            self.x + 4,
+            self.y + 10,
+            self.width - 8,
+            self.height - 10)

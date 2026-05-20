@@ -10,18 +10,28 @@ from npc import NPC
 from inicio import *
 
 game_mode = 'inicio'
+pygame.mixer.init()
 pygame.init()
 fonte = pygame.font.Font(None, 14)
 # ----- Gera tela principal
 width_base = 160
-height_base = 160
+height_base = 144
+frame_width = 256
+frame_height = 224
+game_x = 48
+game_y = 40
 escala = 4
-WIDTH = width_base*escala
-HEIGHT = height_base*escala
+WIDTH = frame_width * escala
+HEIGHT = frame_height * escala
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 tela_base = pygame.Surface((width_base, height_base))
+frame_base = pygame.Surface((frame_width, frame_height))
+frame = pygame.image.load("assets/frame_blue_english.png").convert()
 pygame.display.set_caption('Matias, Lucas, Gabriel')
-
+#----- Musicas
+pygame.mixer.music.load("assets/sounds/Route1.mp3")
+pygame.mixer.music.set_volume(0.5)
+pygame.mixer.music.play(-1)
 
 # ----- Inicia estruturas de dados
 tick = pygame.time.Clock()
@@ -32,8 +42,7 @@ mapa_height = mapa.get_height()
 game = True
 player = Player(175,500)
 npc_cura = NPC(175, 470)
-print(mapa.get_size())
-print(mask.get_size())
+
 
 
 # ===== Loop principal =====
@@ -53,6 +62,7 @@ while game:
     # ----- Gera saídas
     tela_base.fill((0, 0, 0)) # Preenche com a cor branca
     if game_mode == 'andando':
+
         loc_x_antiga = player.x
         loc_y_antiga = player.y
 
@@ -85,6 +95,8 @@ while game:
         if keys[pygame.K_RETURN]:
             game_mode = 'andando'
     # ----- Atualiza estado do jogo
+    frame_base.blit(frame, (0, 0))  
+    frame_base.blit(tela_base, (game_x, game_y))
     tela_escalada = pygame.transform.scale(tela_base, (WIDTH, HEIGHT))
     screen.blit(tela_escalada, (0, 0))
     pygame.display.update()  # Mostra o novo frame para o jogador
