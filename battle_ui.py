@@ -32,11 +32,15 @@ caixa_de_acoes = sprite_sheet.get_sprite(72,256,167-72,303-256)
 setinha = sprite_sheet.get_sprite(344,72,351-344,79-71)
 caixa_de_ataques = sprite_sheet.get_sprite(8, 376, 167-8, 455-376)
 
+
+
+
+
 charmander = sprites_pokemons.get_sprite(424, 140, 455-424, 171-140)
-pikachu = sprites_pokemons.get_sprite(522,378,561-522, 417-378)
+enemy_sprite = sprites_pokemons.get_sprite(enemy_x, enemy_y, enemy_width, enemy_height)
 
 lista_sprites = [sublinhado, barra_de_vida, caixa_de_texto, caixa_de_acoes, setinha, caixa_de_ataques, hp_player]
-lista_pokemons = [charmander, pikachu]
+lista_pokemons = [charmander, enemy_sprite]
 
 
 for poke in dicionario_ataques:
@@ -68,14 +72,15 @@ def desenha_tela(tela, fonte):
 )
 
     tela.blit(charmander, (2, 70))
-    tela.blit(pikachu, (100, 20))
+    tela.blit(enemy_sprite, (100, 20))
     tela.blit(sublinhado, (8,10))
     tela.blit(pygame.transform.flip(sublinhado, True, False), (81,98))
     tela.blit(barra_de_vida, (11,13))
-    tela.blit(hp_player_barra, (29,14))
     tela.blit(barra_de_vida, (86,94))
-    tela.blit(hp_enemy_barra, (104,95))
+    tela.blit(hp_enemy_barra, (29,14))
     tela.blit(caixa_de_texto, (0, 112))
+    tela.blit(hp_player_barra, (104,95))
+    
 
 def desenha_mensagem(tela, fonte, texto):
     texto = fonte.render(texto, False, (0,0,0))
