@@ -67,11 +67,11 @@ def handle_input(event): #IA
             selected_attack = 0
             return
 
-        elif event.key == pygame.K_UP:
+        elif event.key == pygame.K_w:
             selected_attack = 0
             return
 
-        elif event.key == pygame.K_DOWN:
+        elif event.key == pygame.K_s:
             selected_attack = 1
             return
 
@@ -86,11 +86,11 @@ def handle_input(event): #IA
             mostra_caixa_acoes = False
             return
 
-        elif event.key == pygame.K_UP:
+        elif event.key == pygame.K_w:
             selected = 'fight'
             return
 
-        elif event.key == pygame.K_DOWN:
+        elif event.key == pygame.K_s:
             selected = 'run'
             return
 
@@ -99,9 +99,12 @@ def handle_input(event): #IA
                 mostra_caixa_ataques = True
                 selected_attack = 0
             elif selected == 'run':
-                # aqui você coloca a lógica de fugir
-                pass
-            return
+                mostra_caixa_acoes = False
+                mostra_caixa_ataques = False
+                selected = "fight"
+                selected_attack = 0
+                batalha.state = "ESCOLHA_ACAO"
+            return "andando"
     else:
         if event.key == pygame.K_RETURN:
             mostra_caixa_acoes = True
