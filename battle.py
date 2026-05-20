@@ -104,7 +104,7 @@ def handle_input(event): #IA
                 selected = "fight"
                 selected_attack = 0
                 batalha.state = "ESCOLHA_ACAO"
-            return "andando"
+                return "andando"
     else:
         if event.key == pygame.K_RETURN:
             mostra_caixa_acoes = True
