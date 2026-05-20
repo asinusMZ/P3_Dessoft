@@ -133,11 +133,16 @@ def draw_battle(tela, fonte):
             tocar_vitoria()
             musica_vitoria_tocou = True
             tempo_vitoria = pygame.time.get_ticks()
-        if pygame.time.get_ticks() - tempo_vitoria >= 400:
+        if pygame.time.get_ticks() - tempo_vitoria >= 3000:
             musica_vitoria_tocou = False
             tempo_vitoria = 0
             return 'andando'
         return 'batalha'
+    elif batalha.state == 'DERROTA':
+        pode_atacar = False
+        if pygame.time.get_ticks() - tempo_vitoria >= 3000:
+            tempo_vitoria = 0
+            return 'andando'
 
     vencedor = batalha.check_winner()
 

@@ -46,6 +46,10 @@ def pega_ataques(poke_data):
 with open('pokemons_ataque.json') as f:
     dicionario_ataques = json.load(f)
 
+with open('sprites.json') as sprites:
+    sprites_coordenadas = json.load(sprites)
+
+
 for poke in dicionario_ataques:
     if poke["name"] == "Charmander":
         player = pokemon(poke["name"],
@@ -55,15 +59,20 @@ for poke in dicionario_ataques:
                          poke['attack']
                          )
         break
-for poke in dicionario_ataques:
-    if poke["name"] == random.choice(dicionario_ataques)['name']:
-        enemy = pokemon(poke["name"],
-                         poke['hp'],
-                         poke['defense'],
-                         poke['moves'],
-                         poke['attack']
-                         )
-        break
+escolhido = random.choice(dicionario_ataques)
+enemy = pokemon(
+    escolhido['name'],
+    escolhido['hp'],
+    escolhido['defense'],
+    escolhido['moves'],
+    escolhido['attack']
+)
 
+for poke in sprites_coordenadas:
+    if poke['name'] == enemy.name:
+        enemy_x = poke['x']
+        enemy_y = poke['y']
+        enemy_height = poke['height']
+        enemy_width = poke['width']
 player.moves = pega_ataques(player)
 enemy.moves = pega_ataques(enemy)
