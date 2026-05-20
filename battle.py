@@ -1,74 +1,128 @@
 import random
 import pygame
+from pokemon import *
+from models import *
 from battle_ui import *
+
 
 mostra_caixa_acoes = False
 mostra_caixa_ataques = False
 selected = 'fight'
-class Move: #IA
-    def __init__(self, name, move_type, power, accuracy, pp):
-        self.name = name          # "Lança-Chamas"
-        self.move_type = move_type  # "Fogo"
-        self.power = power        # 90  (quão forte é)
-        self.accuracy = accuracy  # 100 (% de chance de acertar)
-        self.pp = pp              # 15  (quantas vezes pode usar)
-        self.current_pp = pp      # PP atual (vai diminuindo)
-
-    def use(self):
-        if self.current_pp > 0:
-            self.current_pp -= 1
-            return True
-        return False  # sem PP, não pode usar
+selected_attack = 0
+tempo_inicio = 0
 
 class battle:
     def __init__(self, player_pokemon, enemy_pokemon):
         self.player = player_pokemon
         self.enemy = enemy_pokemon
         self.state = "ESCOLHA_ACAO"
-        self.message = ""
+        self.message = f"{self.enemy.name} wants to fight"
 
     
     def player_attack(self, move):
         damage = self.calculate_damage(move, self.player, self.enemy)
         self.enemy.take_damage(damage)
         self.message = f"{self.player.name} usou {move.name}!"
+        move.use()
         self.state = "TURNO_INIMIGO"
-
     def enemy_attack(self):
         move = random.choice(self.enemy.moves)
         damage = self.calculate_damage(move, self.enemy, self.player)
         self.player.take_damage(damage)
         self.message = f"{self.enemy.name} usou {move.name}"
+        move.use()
+        self.state = "ESCOLHA_ACAO"
     
-    def calculate_damage(self, move, attacker, defender): #IA
-        return int((move.power * attacker.attack) / defender.defense * 0.5)
+    def calculate_damage(self, move, attacker, defender):
+        return int((move.power + attacker.attack) / (defender.defense/2))
     
     def check_winner(self):
-        if self.enemy.is_fainted():
+        if self.enemy.is_fainted(self.enemy.vida):
+            self.message = f'{self.enemy.name} foi derrotado!'
             return "JOGADOR"
-        if self.player.is_fainted():
+        if self.player.is_fainted(self.player.vida):
             return "INIMIGO"
         return None
     
+batalha = battle(player, enemy)
 def handle_input(event): #IA
-    global mostra_caixa_acoes, mostra_caixa_ataques, selected
+    global mostra_caixa_acoes, mostra_caixa_ataques, selected, selected_attack
 
-    if not mostra_caixa_acoes:
-        if event.key == pygame.K_RETURN:
-            mostra_caixa_acoes = True
-    else:
+    if event.type != pygame.KEYDOWN:
+        return
+
+    if mostra_caixa_ataques:
+        if event.key == pygame.K_ESCAPE:
+            mostra_caixa_ataques = False
+            selected_attack = 0
+            return
+
+        elif event.key == pygame.K_UP:
+            selected_attack = 0
+            return
+
+        elif event.key == pygame.K_DOWN:
+            selected_attack = 1
+            return
+
+        elif event.key == pygame.K_RETURN:
+            battle.player_attack(batalha, player.moves[selected_attack])
+            mostra_caixa_ataques = False
+            mostra_caixa_acoes = False
+            return
+        
+    elif mostra_caixa_acoes:
         if event.key == pygame.K_ESCAPE:
             mostra_caixa_acoes = False
-        if event.key == pygame.K_DOWN:
-            selected = 'run'
-        if event.key == pygame.K_UP:
+            return
+
+        elif event.key == pygame.K_UP:
             selected = 'fight'
-        if selected == 'fight' and event.key == pygame.K_RETURN:
-            mostra_caixa_ataques = True
+            return
+
+        elif event.key == pygame.K_DOWN:
+            selected = 'run'
+            return
+
+        elif event.key == pygame.K_RETURN:
+            if selected == 'fight':
+                mostra_caixa_ataques = True
+                selected_attack = 0
+            elif selected == 'run':
+                # aqui você coloca a lógica de fugir
+                pass
+            return
+    else:
+        if event.key == pygame.K_RETURN:
+            mostra_caixa_acoes = True
+            selected = 'fight'
+            selected_attack = 0
+            return
 
 def draw_battle(tela, fonte):
-    if mostra_caixa_acoes:
-        desenha_caixas('acoes', tela, fonte)
-        desenha_seta('acoes', tela, selected)
-        if mostra_caixa_ataques:
-            desenha_caixas('ataques', tela, fonte)
+    global tempo_inicio
+    desenha_mensagem(tela, fonte, batalha.message)
+    if batalha.state == 'ESCOLHA_ACAO':
+        if mostra_caixa_acoes:
+            desenha_caixas('acoes', tela, fonte)
+            desenha_seta('acoes', tela, selected, fonte)
+            if mostra_caixa_ataques:
+                desenha_caixas('ataques', tela, fonte)
+                desenha_seta('ataques', tela, selected_attack, fonte)
+    elif batalha.state == "TURNO_INIMIGO":
+        if tempo_inicio == 0:
+            tempo_inicio = pygame.time.get_ticks()
+        if pygame.time.get_ticks() - tempo_inicio >= 2000:
+            tempo_inicio = 0
+            battle.enemy_attack(batalha)
+    batalha.check_winner()
+    if batalha.check_winner() != None:
+        batalha.state = "ESCOLHA_ACAO"
+        if pygame.time.get_ticks() - tempo_inicio >= 2000:
+            tempo_inicio = 0
+            return 'andando'
+    return 'batalha'
+
+
+
+

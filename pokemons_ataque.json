@@ -1,0 +1,742 @@
+[
+  {
+    "id": 1,
+    "name": "Bulbasaur",
+    "hp": 45,
+    "defense": 49,
+    "attack": 49,
+    "moves": [
+      {
+        "name": "Vine Whip",
+        "type": "Grass",
+        "power": 0,
+        "accuracy": 100,
+        "pp": 10
+      },
+      {
+        "name": "Poison Sting",
+        "type": "Poison",
+        "power": 15,
+        "accuracy": 100,
+        "pp": 35
+      },
+      {
+        "name": "Acid",
+        "type": "Poison",
+        "power": 40,
+        "accuracy": 100,
+        "pp": 30
+      },
+      {
+        "name": "Absorb",
+        "type": "Grass",
+        "power": 0,
+        "accuracy": 100,
+        "pp": 10
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Charmander",
+    "hp": 39,
+    "defense": 43,
+    "attack": 52,
+    "moves": [
+      {
+        "name": "Fire Punch",
+        "type": "Fire",
+        "power": 75,
+        "accuracy": 100,
+        "pp": 15
+      },
+      {
+        "name": "Ember",
+        "type": "Fire",
+        "power": 40,
+        "accuracy": 100,
+        "pp": 25
+      },
+      {
+        "name": "Flamethrower",
+        "type": "Fire",
+        "power": 0,
+        "accuracy": 100,
+        "pp": 15
+      },
+      {
+        "name": "Fire Spin",
+        "type": "Fire",
+        "power": 0,
+        "accuracy": 100,
+        "pp": 15
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Charizard",
+    "hp": 78,
+    "defense": 78,
+    "attack": 84,
+    "moves": [
+      {
+        "name": "Fire Punch",
+        "type": "Fire",
+        "power": 75,
+        "accuracy": 100,
+        "pp": 15
+      },
+      {
+        "name": "Gust",
+        "type": "Flying",
+        "power": 40,
+        "accuracy": 100,
+        "pp": 35
+      },
+      {
+        "name": "Wing Attack",
+        "type": "Flying",
+        "power": 0,
+        "accuracy": 100,
+        "pp": 35
+      },
+      {
+        "name": "Fly",
+        "type": "Flying",
+        "power": 0,
+        "accuracy": 95,
+        "pp": 15
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Squirtle",
+    "hp": 44,
+    "defense": 65,
+    "attack": 48,
+    "moves": [
+      {
+        "name": "Water Gun",
+        "type": "Water",
+        "power": 40,
+        "accuracy": 100,
+        "pp": 25
+      },
+      {
+        "name": "Hydro Pump",
+        "type": "Water",
+        "power": 0,
+        "accuracy": 80,
+        "pp": 5
+      },
+      {
+        "name": "Surf",
+        "type": "Water",
+        "power": 0,
+        "accuracy": 100,
+        "pp": 15
+      },
+      {
+        "name": "Bubble Beam",
+        "type": "Water",
+        "power": 65,
+        "accuracy": 100,
+        "pp": 20
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Blastoise",
+    "hp": 79,
+    "defense": 100,
+    "attack": 83,
+    "moves": [
+      {
+        "name": "Water Gun",
+        "type": "Water",
+        "power": 40,
+        "accuracy": 100,
+        "pp": 25
+      },
+      {
+        "name": "Hydro Pump",
+        "type": "Water",
+        "power": 0,
+        "accuracy": 80,
+        "pp": 5
+      },
+      {
+        "name": "Surf",
+        "type": "Water",
+        "power": 0,
+        "accuracy": 100,
+        "pp": 15
+      },
+      {
+        "name": "Bubble Beam",
+        "type": "Water",
+        "power": 65,
+        "accuracy": 100,
+        "pp": 20
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "name": "Pikachu",
+    "hp": 35,
+    "defense": 40,
+    "attack": 55,
+    "moves": [
+      {
+        "name": "Thunder Punch",
+        "type": "Electric",
+        "power": 75,
+        "accuracy": 100,
+        "pp": 15
+      },
+      {
+        "name": "Thunder Shock",
+        "type": "Electric",
+        "power": 40,
+        "accuracy": 100,
+        "pp": 30
+      },
+      {
+        "name": "Thunderbolt",
+        "type": "Electric",
+        "power": 0,
+        "accuracy": 100,
+        "pp": 15
+      },
+      {
+        "name": "Thunder",
+        "type": "Electric",
+        "power": 0,
+        "accuracy": 70,
+        "pp": 10
+      }
+    ]
+  },
+  {
+    "id": 39,
+    "name": "Jigglypuff",
+    "hp": 115,
+    "defense": 20,
+    "attack": 45,
+    "moves": [
+      {
+        "name": "Pound",
+        "type": "Normal",
+        "power": 40,
+        "accuracy": 100,
+        "pp": 35
+      },
+      {
+        "name": "Double Slap",
+        "type": "Normal",
+        "power": 15,
+        "accuracy": 85,
+        "pp": 10
+      },
+      {
+        "name": "Comet Punch",
+        "type": "Normal",
+        "power": 18,
+        "accuracy": 85,
+        "pp": 15
+      },
+      {
+        "name": "Mega Punch",
+        "type": "Normal",
+        "power": 80,
+        "accuracy": 85,
+        "pp": 20
+      }
+    ]
+  },
+  {
+    "id": 52,
+    "name": "Meowth",
+    "hp": 40,
+    "defense": 35,
+    "attack": 45,
+    "moves": [
+      {
+        "name": "Pound",
+        "type": "Normal",
+        "power": 40,
+        "accuracy": 100,
+        "pp": 35
+      },
+      {
+        "name": "Double Slap",
+        "type": "Normal",
+        "power": 15,
+        "accuracy": 85,
+        "pp": 10
+      },
+      {
+        "name": "Comet Punch",
+        "type": "Normal",
+        "power": 18,
+        "accuracy": 85,
+        "pp": 15
+      },
+      {
+        "name": "Mega Punch",
+        "type": "Normal",
+        "power": 80,
+        "accuracy": 85,
+        "pp": 20
+      }
+    ]
+  },
+  {
+    "id": 54,
+    "name": "Psyduck",
+    "hp": 50,
+    "defense": 48,
+    "attack": 52,
+    "moves": [
+      {
+        "name": "Water Gun",
+        "type": "Water",
+        "power": 40,
+        "accuracy": 100,
+        "pp": 25
+      },
+      {
+        "name": "Hydro Pump",
+        "type": "Water",
+        "power": 0,
+        "accuracy": 80,
+        "pp": 5
+      },
+      {
+        "name": "Surf",
+        "type": "Water",
+        "power": 0,
+        "accuracy": 100,
+        "pp": 15
+      },
+      {
+        "name": "Bubble Beam",
+        "type": "Water",
+        "power": 65,
+        "accuracy": 100,
+        "pp": 20
+      }
+    ]
+  },
+  {
+    "id": 63,
+    "name": "Abra",
+    "hp": 25,
+    "defense": 15,
+    "attack": 20,
+    "moves": [
+      {
+        "name": "Psybeam",
+        "type": "Psychic",
+        "power": 65,
+        "accuracy": 100,
+        "pp": 20
+      },
+      {
+        "name": "Confusion",
+        "type": "Psychic",
+        "power": 50,
+        "accuracy": 100,
+        "pp": 25
+      },
+      {
+        "name": "Psychic",
+        "type": "Psychic",
+        "power": 90,
+        "accuracy": 100,
+        "pp": 10
+      },
+      {
+        "name": "Dream Eater",
+        "type": "Psychic",
+        "power": 100,
+        "accuracy": 100,
+        "pp": 15
+      }
+    ]
+  },
+  {
+    "id": 66,
+    "name": "Machop",
+    "hp": 70,
+    "defense": 50,
+    "attack": 80,
+    "moves": [
+      {
+        "name": "Karate Chop",
+        "type": "Fighting",
+        "power": 50,
+        "accuracy": 100,
+        "pp": 25
+      },
+      {
+        "name": "Double Kick",
+        "type": "Fighting",
+        "power": 30,
+        "accuracy": 100,
+        "pp": 30
+      },
+      {
+        "name": "Jump Kick",
+        "type": "Fighting",
+        "power": 0,
+        "accuracy": 95,
+        "pp": 10
+      },
+      {
+        "name": "Rolling Kick",
+        "type": "Fighting",
+        "power": 60,
+        "accuracy": 85,
+        "pp": 15
+      }
+    ]
+  },
+  {
+    "id": 94,
+    "name": "Gengar",
+    "hp": 60,
+    "defense": 60,
+    "attack": 65,
+    "moves": [
+      {
+        "name": "Poison Sting",
+        "type": "Poison",
+        "power": 15,
+        "accuracy": 100,
+        "pp": 35
+      },
+      {
+        "name": "Acid",
+        "type": "Poison",
+        "power": 40,
+        "accuracy": 100,
+        "pp": 30
+      },
+      {
+        "name": "Lick",
+        "type": "Ghost",
+        "power": 0,
+        "accuracy": 100,
+        "pp": 30
+      },
+      {
+        "name": "Smog",
+        "type": "Poison",
+        "power": 0,
+        "accuracy": 70,
+        "pp": 20
+      }
+    ]
+  },
+  {
+    "id": 104,
+    "name": "Cubone",
+    "hp": 50,
+    "defense": 95,
+    "attack": 50,
+    "moves": [
+      {
+        "name": "Earthquake",
+        "type": "Ground",
+        "power": 100,
+        "accuracy": 100,
+        "pp": 10
+      },
+      {
+        "name": "Dig",
+        "type": "Ground",
+        "power": 0,
+        "accuracy": 100,
+        "pp": 10
+      },
+      {
+        "name": "Bone Club",
+        "type": "Ground",
+        "power": 65,
+        "accuracy": 85,
+        "pp": 20
+      },
+      {
+        "name": "Bonemerang",
+        "type": "Ground",
+        "power": 50,
+        "accuracy": 90,
+        "pp": 10
+      }
+    ]
+  },
+  {
+    "id": 113,
+    "name": "Chansey",
+    "hp": 250,
+    "defense": 5,
+    "attack": 5,
+    "moves": [
+      {
+        "name": "Pound",
+        "type": "Normal",
+        "power": 40,
+        "accuracy": 100,
+        "pp": 35
+      },
+      {
+        "name": "Double Slap",
+        "type": "Normal",
+        "power": 15,
+        "accuracy": 85,
+        "pp": 10
+      },
+      {
+        "name": "Comet Punch",
+        "type": "Normal",
+        "power": 18,
+        "accuracy": 85,
+        "pp": 15
+      },
+      {
+        "name": "Mega Punch",
+        "type": "Normal",
+        "power": 80,
+        "accuracy": 85,
+        "pp": 20
+      }
+    ]
+  },
+  {
+    "id": 131,
+    "name": "Lapras",
+    "hp": 130,
+    "defense": 80,
+    "attack": 85,
+    "moves": [
+      {
+        "name": "Ice Punch",
+        "type": "Ice",
+        "power": 75,
+        "accuracy": 100,
+        "pp": 15
+      },
+      {
+        "name": "Water Gun",
+        "type": "Water",
+        "power": 40,
+        "accuracy": 100,
+        "pp": 25
+      },
+      {
+        "name": "Hydro Pump",
+        "type": "Water",
+        "power": 0,
+        "accuracy": 80,
+        "pp": 5
+      },
+      {
+        "name": "Surf",
+        "type": "Water",
+        "power": 0,
+        "accuracy": 100,
+        "pp": 15
+      }
+    ]
+  },
+  {
+    "id": 133,
+    "name": "Eevee",
+    "hp": 55,
+    "defense": 50,
+    "attack": 55,
+    "moves": [
+      {
+        "name": "Pound",
+        "type": "Normal",
+        "power": 40,
+        "accuracy": 100,
+        "pp": 35
+      },
+      {
+        "name": "Double Slap",
+        "type": "Normal",
+        "power": 15,
+        "accuracy": 85,
+        "pp": 10
+      },
+      {
+        "name": "Comet Punch",
+        "type": "Normal",
+        "power": 18,
+        "accuracy": 85,
+        "pp": 15
+      },
+      {
+        "name": "Mega Punch",
+        "type": "Normal",
+        "power": 80,
+        "accuracy": 85,
+        "pp": 20
+      }
+    ]
+  },
+  {
+    "id": 143,
+    "name": "Snorlax",
+    "hp": 160,
+    "defense": 65,
+    "attack": 110,
+    "moves": [
+      {
+        "name": "Pound",
+        "type": "Normal",
+        "power": 40,
+        "accuracy": 100,
+        "pp": 35
+      },
+      {
+        "name": "Double Slap",
+        "type": "Normal",
+        "power": 15,
+        "accuracy": 85,
+        "pp": 10
+      },
+      {
+        "name": "Comet Punch",
+        "type": "Normal",
+        "power": 18,
+        "accuracy": 85,
+        "pp": 15
+      },
+      {
+        "name": "Mega Punch",
+        "type": "Normal",
+        "power": 80,
+        "accuracy": 85,
+        "pp": 20
+      }
+    ]
+  },
+  {
+    "id": 147,
+    "name": "Dratini",
+    "hp": 41,
+    "defense": 45,
+    "attack": 64,
+    "moves": [
+      {
+        "name": "Dragon Rage",
+        "type": "Dragon",
+        "power": 0,
+        "accuracy": 100,
+        "pp": 10
+      },
+      {
+        "name": "Outrage",
+        "type": "Dragon",
+        "power": 0,
+        "accuracy": 100,
+        "pp": 10
+      },
+      {
+        "name": "Dragon Breath",
+        "type": "Dragon",
+        "power": 60,
+        "accuracy": 100,
+        "pp": 20
+      },
+      {
+        "name": "Twister",
+        "type": "Dragon",
+        "power": 40,
+        "accuracy": 100,
+        "pp": 20
+      }
+    ]
+  },
+  {
+    "id": 150,
+    "name": "Mewtwo",
+    "hp": 106,
+    "defense": 90,
+    "attack": 110,
+    "moves": [
+      {
+        "name": "Psybeam",
+        "type": "Psychic",
+        "power": 65,
+        "accuracy": 100,
+        "pp": 20
+      },
+      {
+        "name": "Confusion",
+        "type": "Psychic",
+        "power": 50,
+        "accuracy": 100,
+        "pp": 25
+      },
+      {
+        "name": "Psychic",
+        "type": "Psychic",
+        "power": 90,
+        "accuracy": 100,
+        "pp": 10
+      },
+      {
+        "name": "Dream Eater",
+        "type": "Psychic",
+        "power": 100,
+        "accuracy": 100,
+        "pp": 15
+      }
+    ]
+  },
+  {
+    "id": 151,
+    "name": "Mew",
+    "hp": 100,
+    "defense": 100,
+    "attack": 100,
+    "moves": [
+      {
+        "name": "Psybeam",
+        "type": "Psychic",
+        "power": 65,
+        "accuracy": 100,
+        "pp": 20
+      },
+      {
+        "name": "Confusion",
+        "type": "Psychic",
+        "power": 50,
+        "accuracy": 100,
+        "pp": 25
+      },
+      {
+        "name": "Psychic",
+        "type": "Psychic",
+        "power": 90,
+        "accuracy": 100,
+        "pp": 10
+      },
+      {
+        "name": "Dream Eater",
+        "type": "Psychic",
+        "power": 100,
+        "accuracy": 100,
+        "pp": 15
+      }
+    ]
+  }
+]
