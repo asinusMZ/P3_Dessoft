@@ -34,7 +34,10 @@ class battle:
         self.enemy.take_damage(damage)
         self.message = f"{self.player.name} usou {move.name}!"
         move.use()
-        self.state = "TURNO_INIMIGO"
+        if self.enemy.is_fainted(self.enemy.vida):
+            self.state = "VITORIA"
+        else:
+            self.state = "TURNO_INIMIGO"
     def enemy_attack(self):
         move = random.choice(self.enemy.moves)
         damage = self.calculate_damage(move, self.enemy, self.player)
@@ -57,7 +60,7 @@ class battle:
 batalha = battle(player, enemy)
 def handle_input(event): #IA
     global mostra_caixa_acoes, mostra_caixa_ataques, selected, selected_attack
-
+    print(f"evento: {event.key}, caixa_ataques: {mostra_caixa_ataques}, caixa_acoes: {mostra_caixa_acoes}")
     if event.type != pygame.KEYDOWN:
         return
 
@@ -67,12 +70,14 @@ def handle_input(event): #IA
             selected_attack = 0
             return
 
-        elif event.key == pygame.K_w:
+        elif event.key == pygame.K_UP:
             selected_attack = 0
+            print("W pressionado, selected_attack =", selected_attack)
             return
 
-        elif event.key == pygame.K_s:
+        elif event.key == pygame.K_DOWN:
             selected_attack = 1
+            print("S pressionado, selected_attack =", selected_attack)
             return
 
         elif event.key == pygame.K_RETURN and pode_atacar:
@@ -86,11 +91,11 @@ def handle_input(event): #IA
             mostra_caixa_acoes = False
             return
 
-        elif event.key == pygame.K_w:
+        elif event.key == pygame.K_UP:
             selected = 'fight'
             return
 
-        elif event.key == pygame.K_s:
+        elif event.key == pygame.K_DOWN:
             selected = 'run'
             return
 
@@ -103,7 +108,8 @@ def handle_input(event): #IA
                 mostra_caixa_ataques = False
                 selected = "fight"
                 selected_attack = 0
-                batalha.state = "ESCOLHA_ACAO"
+                batalha.message = 'Voce fugiu!'
+                batalha.state = "FUGIU"
                 return "andando"
     else:
         if event.key == pygame.K_RETURN:
@@ -115,6 +121,7 @@ def handle_input(event): #IA
 def draw_battle(tela, fonte):
     global tempo_inicio, tempo_vitoria, musica_vitoria_tocou, pode_atacar
     desenha_mensagem(tela, fonte, batalha.message)
+    
     if batalha.state == 'ESCOLHA_ACAO':
         pode_atacar = True
         if mostra_caixa_acoes:
@@ -123,6 +130,7 @@ def draw_battle(tela, fonte):
             if mostra_caixa_ataques:
                 desenha_caixas('ataques', tela, fonte)
                 desenha_seta('ataques', tela, selected_attack, fonte)
+
     elif batalha.state == "TURNO_INIMIGO":
         pode_atacar = False
         if tempo_inicio == 0:
@@ -130,6 +138,15 @@ def draw_battle(tela, fonte):
         if pygame.time.get_ticks() - tempo_inicio >= 2000:
             tempo_inicio = 0
             battle.enemy_attack(batalha)
+            # checa vencedor SÓ após o inimigo atacar
+            vencedor = batalha.check_winner()
+            if vencedor == "JOGADOR":
+                batalha.state = "VITORIA"
+                batalha.message = f"{batalha.enemy.name} foi derrotado!"
+            elif vencedor == "INIMIGO":
+                batalha.state = "DERROTA"
+                batalha.message = f"{batalha.player.name} foi derrotado!"
+
     elif batalha.state == "VITORIA":
         pode_atacar = False
         if not musica_vitoria_tocou:
@@ -140,25 +157,22 @@ def draw_battle(tela, fonte):
             musica_vitoria_tocou = False
             tempo_vitoria = 0
             return 'andando'
-        return 'batalha'
+
     elif batalha.state == 'DERROTA':
         pode_atacar = False
+        if tempo_vitoria == 0:
+            tempo_vitoria = pygame.time.get_ticks()
+        if pygame.time.get_ticks() - tempo_vitoria >= 3000:
+            tempo_vitoria = 0
+            return 'andando'
+    
+    elif batalha.state == 'FUGIU':
+        pode_atacar = False
+        if tempo_vitoria == 0:
+            tempo_vitoria = pygame.time.get_ticks()
         if pygame.time.get_ticks() - tempo_vitoria >= 3000:
             tempo_vitoria = 0
             return 'andando'
 
-    vencedor = batalha.check_winner()
-
-    if vencedor == "JOGADOR":
-        batalha.state = "VITORIA"
-        batalha.message = f"{batalha.enemy.name} foi derrotado!"
-        return 'batalha'
-
-    elif vencedor == "INIMIGO":
-        batalha.message = f"{batalha.player.name} foi derrotado!"
-        return 'andando'
 
     return 'batalha'
-
-
-

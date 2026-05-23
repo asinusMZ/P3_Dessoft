@@ -3,180 +3,180 @@
     "id": 1,
     "name": "Bulbasaur",
     "spritesheet": "pokemons.png",
-    "x": 5,
-    "y": 15,
-    "width": 56,
-    "height": 56
+    "x": 66,
+    "y": 34,
+    "width": 39,
+    "height": 39
   },
   {
     "id": 4,
     "name": "Charmander",
     "spritesheet": "pokemons.png",
-    "x": 347,
-    "y": 15,
-    "width": 56,
-    "height": 56
+    "x": 408,
+    "y": 91,
+    "width": 39,
+    "height": 39
   },
   {
     "id": 6,
     "name": "Charizard",
     "spritesheet": "pokemons.png",
-    "x": 575,
-    "y": 15,
-    "width": 56,
-    "height": 56
+    "x": 628,
+    "y": 75,
+    "width": 60,
+    "height": 60
   },
   {
     "id": 7,
     "name": "Squirtle",
     "spritesheet": "pokemons.png",
-    "x": 689,
-    "y": 15,
-    "width": 56,
-    "height": 56
+    "x": 750,
+    "y": 91,
+    "width": 39,
+    "height": 39
   },
   {
     "id": 9,
     "name": "Blastoise",
     "spritesheet": "pokemons.png",
-    "x": 917,
-    "y": 15,
-    "width": 56,
-    "height": 56
+    "x": 970,
+    "y": 75,
+    "width": 60,
+    "height": 60
   },
   {
     "id": 25,
     "name": "Pikachu",
     "spritesheet": "pokemons.png",
-    "x": 461,
-    "y": 371,
-    "width": 56,
-    "height": 56
+    "x": 522,
+    "y": 378,
+    "width": 39,
+    "height": 39
   },
   {
     "id": 39,
     "name": "Jigglypuff",
     "spritesheet": "pokemons.png",
-    "x": 917,
-    "y": 549,
-    "width": 56,
-    "height": 56
+    "x": 978,
+    "y": 550,
+    "width": 39,
+    "height": 39
   },
   {
     "id": 52,
     "name": "Meowth",
     "spritesheet": "pokemons.png",
-    "x": 119,
-    "y": 905,
-    "width": 56,
-    "height": 56
+    "x": 180,
+    "y": 951,
+    "width": 39,
+    "height": 39
   },
   {
     "id": 54,
     "name": "Psyduck",
     "spritesheet": "pokemons.png",
-    "x": 347,
-    "y": 905,
-    "width": 56,
-    "height": 56
+    "x": 408,
+    "y": 894,
+    "width": 39,
+    "height": 39
   },
   {
     "id": 63,
     "name": "Abra",
     "spritesheet": "pokemons.png",
-    "x": 233,
-    "y": 1083,
-    "width": 56,
-    "height": 56
+    "x": 294,
+    "y": 1066,
+    "width": 39,
+    "height": 39
   },
   {
     "id": 66,
     "name": "Machop",
     "spritesheet": "pokemons.png",
-    "x": 575,
-    "y": 1083,
-    "width": 56,
-    "height": 56
+    "x": 636,
+    "y": 1066,
+    "width": 39,
+    "height": 39
   },
   {
     "id": 94,
     "name": "Gengar",
     "spritesheet": "pokemons.png",
-    "x": 347,
-    "y": 1617,
-    "width": 56,
-    "height": 56
+    "x": 408,
+    "y": 1574,
+    "width": 47,
+    "height": 47
   },
   {
     "id": 104,
     "name": "Cubone",
     "spritesheet": "pokemons.png",
-    "x": 347,
-    "y": 1795,
-    "width": 56,
-    "height": 56
+    "x": 408,
+    "y": 1754,
+    "width": 39,
+    "height": 39
   },
   {
     "id": 113,
     "name": "Chansey",
     "spritesheet": "pokemons.png",
-    "x": 233,
-    "y": 1973,
-    "width": 56,
-    "height": 56
+    "x": 294,
+    "y": 1918,
+    "width": 47,
+    "height": 47
   },
   {
     "id": 131,
     "name": "Lapras",
     "spritesheet": "pokemons.png",
-    "x": 5,
-    "y": 2329,
-    "width": 56,
-    "height": 56
+    "x": 58,
+    "y": 2254,
+    "width": 60,
+    "height": 60
   },
   {
     "id": 133,
     "name": "Eevee",
     "spritesheet": "pokemons.png",
-    "x": 233,
-    "y": 2329,
-    "width": 56,
-    "height": 56
+    "x": 294,
+    "y": 2270,
+    "width": 39,
+    "height": 39
   },
   {
     "id": 143,
     "name": "Snorlax",
     "spritesheet": "pokemons.png",
-    "x": 233,
-    "y": 2507,
-    "width": 56,
-    "height": 56
+    "x": 286,
+    "y": 2426,
+    "width": 60,
+    "height": 60
   },
   {
     "id": 147,
     "name": "Dratini",
     "spritesheet": "pokemons.png",
-    "x": 689,
-    "y": 2507,
-    "width": 56,
-    "height": 56
+    "x": 750,
+    "y": 2442,
+    "width": 39,
+    "height": 39
   },
   {
     "id": 150,
     "name": "Mewtwo",
     "spritesheet": "pokemons.png",
-    "x": 1031,
-    "y": 2507,
-    "width": 56,
-    "height": 56
+    "x": 1084,
+    "y": 2426,
+    "width": 60,
+    "height": 60
   },
   {
     "id": 151,
     "name": "Mew",
     "spritesheet": "pokemons.png",
-    "x": 5,
-    "y": 2685,
-    "width": 56,
-    "height": 56
+    "x":66,
+    "y": 2614,
+    "width": 39,
+    "height": 39
   }
 ]
