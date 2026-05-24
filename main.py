@@ -62,6 +62,8 @@ def tentar_encontro(player_esta_na_grama, player_se_moveu):
 tick = pygame.time.Clock()
 mapa = load_map()
 mask = load_mask()
+jogavel_width = 320
+jogavel_height = 576
 mapa_width = mapa.get_width()
 mapa_height = mapa.get_height()
 game = True
@@ -94,15 +96,15 @@ while game:
         player.move(keys, mask, is_collision, is_ledge)
         player_esta_na_grama = is_grass(mask, player.get_rect())
         player_se_moveu = player.x != loc_x_antiga or player.y != loc_y_antiga
-        player.x = max(0, min(player.x, mapa_width - player.width))
-        player.y = max(0, min(player.y, mapa_height - player.height))
+        player.x = max(0, min(player.x, jogavel_width - player.width))
+        player.y = max(0, min(player.y, jogavel_height - player.height))
         camera_x = player.x - width_base // 2
         camera_y = player.y - height_base // 2
         
 
 
-        camera_x = max(0, min(camera_x, mapa_width - width_base))
-        camera_y = max(0, min(camera_y, mapa_height - height_base))
+        camera_x = max(0, min(camera_x, jogavel_width - width_base))
+        camera_y = max(0, min(camera_y, jogavel_height - height_base))
 
         draw_map(tela_base, mapa, camera_x, camera_y)
 
