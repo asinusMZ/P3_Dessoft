@@ -1,6 +1,7 @@
 # ===== Inicialização =====
 # ----- Importa e inicia pacotes
 import pygame
+import random
 from player import Player
 from battle_ui import *
 from battle import *
@@ -45,6 +46,17 @@ def toca_musica(path, volume=0.5):
         musica_atual = path
 
 toca_musica("assets/sounds/inicio.mp3", 0.5)
+
+#------ encontros com pokemons na grama
+
+def tentar_encontro(player_esta_na_grama, player_se_moveu):
+    if player_esta_na_grama and player_se_moveu:
+        chance = random.randint(1, 180)
+
+        if chance == 1:
+            return True
+
+    return False
     
 # ----- Inicia estruturas de dados
 tick = pygame.time.Clock()
@@ -80,6 +92,8 @@ while game:
         loc_y_antiga = player.y
 
         player.move(keys, mask, is_collision, is_ledge)
+        player_esta_na_grama = is_grass(mask, player.get_rect())
+        player_se_moveu = player.x != loc_x_antiga or player.y != loc_y_antiga
         player.x = max(0, min(player.x, mapa_width - player.width))
         player.y = max(0, min(player.y, mapa_height - player.height))
         camera_x = player.x - width_base // 2
@@ -96,6 +110,14 @@ while game:
 
         if is_grass(mask, player.get_rect()):
             draw_cover(tela_base, mapa, player, camera_x, camera_y)
+
+        
+        if player_esta_na_grama:
+            draw_cover(tela_base, mapa, player, camera_x, camera_y)
+
+        if tentar_encontro(player_esta_na_grama, player_se_moveu):
+            game_mode = 'batalha'
+            toca_musica("assets/sounds/battle.mp3", 0.5)
         
         npc_cura.draw(tela_base, camera_x, camera_y)
 
