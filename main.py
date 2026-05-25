@@ -119,15 +119,14 @@ while game:
 
         if tentar_encontro(player_esta_na_grama, player_se_moveu):
             game_mode = 'batalha'
+            reset_batalha()
             toca_musica("assets/sounds/battle.mp3", 0.5)
         
         npc_cura.draw(tela_base, camera_x, camera_y)
 
-        if keys[pygame.K_b]:
-            game_mode = 'batalha'
 
     elif game_mode == 'batalha':
-            desenha_tela(tela_base, fonte)
+            desenha_tela(tela_base)
             toca_musica("assets/sounds/battle.mp3", 0.5)
             novo_modo = draw_battle(tela_base, fonte)
             if novo_modo == 'andando':

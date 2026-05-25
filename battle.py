@@ -14,6 +14,7 @@ tempo_vitoria = 0
 musica_vitoria_tocou = False
 pode_atacar = 'True'
 
+
 def tocar_vitoria():
     pygame.mixer.music.stop()
     pygame.mixer.music.load("assets/sounds/victory.mp3")
@@ -122,6 +123,7 @@ def draw_battle(tela, fonte):
     global tempo_inicio, tempo_vitoria, musica_vitoria_tocou, pode_atacar
     desenha_mensagem(tela, fonte, batalha.message)
     
+    
     if batalha.state == 'ESCOLHA_ACAO':
         pode_atacar = True
         if mostra_caixa_acoes:
@@ -174,5 +176,17 @@ def draw_battle(tela, fonte):
             tempo_vitoria = 0
             return 'andando'
 
-
     return 'batalha'
+
+def reset_batalha():
+    global batalha, mostra_caixa_acoes, mostra_caixa_ataques, selected, selected_attack, tempo_inicio, tempo_vitoria, musica_vitoria_tocou
+    import models
+    models.enemy = models.define_enemy()
+    batalha = battle(player, models.enemy)
+    mostra_caixa_acoes = False
+    mostra_caixa_ataques = False
+    selected = 'fight'
+    selected_attack = 0
+    tempo_inicio = 0
+    tempo_vitoria = 0
+    musica_vitoria_tocou = False

@@ -4,7 +4,7 @@ from pokemon import *
 import random
 
 player = ''
-enemy = ''
+
 class Move: #IA
     def __init__(self, name, move_type, power, accuracy, pp):
         self.name = name          # "Lança-Chamas"
@@ -59,20 +59,21 @@ for poke in dicionario_ataques:
                          poke['attack']
                          )
         break
-escolhido = random.choice(dicionario_ataques)
-enemy = pokemon(
-    escolhido['name'],
-    escolhido['hp'],
-    escolhido['defense'],
-    escolhido['moves'],
-    escolhido['attack']
-)
 
-for poke in sprites_coordenadas:
-    if poke['name'] == enemy.name:
-        enemy_x = poke['x']
-        enemy_y = poke['y']
-        enemy_height = poke['height']
-        enemy_width = poke['width']
+
+
 player.moves = pega_ataques(player)
-enemy.moves = pega_ataques(enemy)
+
+
+def get_enemy_sprite(enemy):
+    for poke in  sprites_coordenadas:
+        if poke['name'] == enemy.name:
+            return poke['x'], poke['y'], poke['width'], poke['height']
+    return None
+
+def define_enemy():
+    escolhido = random.choice(dicionario_ataques)
+    enemy = pokemon(escolhido['name'], escolhido['hp'], escolhido['defense'], escolhido['moves'], escolhido['attack'])
+    enemy.moves = pega_ataques(enemy)
+    return enemy
+enemy = define_enemy()

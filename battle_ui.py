@@ -1,6 +1,7 @@
 import pygame
 from pokemon import *
 from models import *
+import models
 
 class SpriteSheet: #IA
     def __init__(self, path):
@@ -35,12 +36,18 @@ caixa_de_ataques = sprite_sheet.get_sprite(8, 376, 167-8, 455-376)
 
 
 
+def get_enemy_surface():
+    coords = get_enemy_sprite(models.enemy)
+    if coords:
+        ex, ey, ew, eh = coords
+        return sprites_pokemons.get_sprite(ex, ey, ew, eh)
+    return None
 
 charmander = sprites_pokemons.get_sprite(424, 140, 455-424, 171-140)
-enemy_sprite = sprites_pokemons.get_sprite(enemy_x, enemy_y, enemy_width, enemy_height)
+
 
 lista_sprites = [sublinhado, barra_de_vida, caixa_de_texto, caixa_de_acoes, setinha, caixa_de_ataques, hp_player]
-lista_pokemons = [charmander, enemy_sprite]
+lista_pokemons = [charmander]
 
 
 for poke in dicionario_ataques:
@@ -55,11 +62,13 @@ for poke in dicionario_ataques:
 
 
 ataques = player.moves
-def desenha_tela(tela, fonte):
+def desenha_tela(tela):
+    enemy_sprite = get_enemy_surface()  
+    hp_max_enemy = next(p['hp'] for p in dicionario_ataques if p['name'] == models.enemy.name)
+    
     tela.fill((245, 245, 245))
-
     largura_hp_player = player.vida / hp_max_player * (87-39)
-    largura_hp_enemy = enemy.vida / hp_max_enemy * (87-39)
+    largura_hp_enemy = models.enemy.vida / hp_max_enemy * (87-39)
 
     hp_player_barra = pygame.transform.scale(
         hp_player,
