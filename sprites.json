@@ -23,8 +23,8 @@
     "spritesheet": "pokemons.png",
     "x": 628,
     "y": 75,
-    "width": 60,
-    "height": 60
+    "width": 56,
+    "height": 56
   },
   {
     "id": 7,
@@ -41,8 +41,8 @@
     "spritesheet": "pokemons.png",
     "x": 970,
     "y": 75,
-    "width": 60,
-    "height": 60
+    "width": 56,
+    "height": 56
   },
   {
     "id": 25,
@@ -131,8 +131,8 @@
     "spritesheet": "pokemons.png",
     "x": 58,
     "y": 2254,
-    "width": 60,
-    "height": 60
+    "width": 56,
+    "height": 56
   },
   {
     "id": 133,
@@ -149,8 +149,8 @@
     "spritesheet": "pokemons.png",
     "x": 286,
     "y": 2426,
-    "width": 60,
-    "height": 60
+    "width": 56,
+    "height": 56
   },
   {
     "id": 147,
@@ -167,8 +167,8 @@
     "spritesheet": "pokemons.png",
     "x": 1084,
     "y": 2426,
-    "width": 60,
-    "height": 60
+    "width": 56,
+    "height": 56
   },
   {
     "id": 151,

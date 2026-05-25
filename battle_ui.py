@@ -63,7 +63,7 @@ for poke in dicionario_ataques:
 
 ataques = player.moves
 def desenha_tela(tela):
-    enemy_sprite = get_enemy_surface()  
+    enemy_sprite = get_enemy_surface() 
     hp_max_enemy = next(p['hp'] for p in dicionario_ataques if p['name'] == models.enemy.name)
     
     tela.fill((245, 245, 245))
@@ -80,7 +80,7 @@ def desenha_tela(tela):
         (int(largura_hp_enemy), 2)
 )
 
-    tela.blit(charmander, (2, 70))
+    tela.blit(charmander, (7, 85))
     tela.blit(enemy_sprite, (100, 20))
     tela.blit(sublinhado, (8,10))
     tela.blit(pygame.transform.flip(sublinhado, True, False), (81,98))
