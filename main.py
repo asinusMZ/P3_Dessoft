@@ -52,10 +52,8 @@ toca_musica("assets/sounds/inicio.mp3", 0.5)
 def tentar_encontro(player_esta_na_grama, player_se_moveu):
     if player_esta_na_grama and player_se_moveu:
         chance = random.randint(1, 180)
- 
         if chance == 1:
             return True
- 
     return False
     
 # ----- Inicia estruturas de dados
@@ -67,7 +65,7 @@ jogavel_height = 576
 mapa_width = mapa.get_width()
 mapa_height = mapa.get_height()
 game = True
-player = Player(175,500)
+player = Player(175, 500)
 npc_cura = NPC(175, 470)
  
 mensagem_cura = ""
@@ -87,16 +85,17 @@ while game:
             elif game_mode == 'andando':
                 if event.key == pygame.K_c:
                     if npc_cura.is_near_player(player):
-                        models.player.heal()
-                        mensagem_cura = f"{models.player.name} foi curado!"
+                        models.player.vida = models.player.max_hp
+                        mensagem_cura = f"{models.player.name} foi curado! HP: {models.player.vida}"
                         mensagem_cura_timer = 180  # 3 segundos a 60fps
-        # ----- Verifica consequências
+ 
         if event.type == pygame.QUIT:
             game = False
+ 
     keys = pygame.key.get_pressed()
     
     # ----- Gera saídas
-    tela_base.fill((0, 0, 0)) # Preenche com a cor branca
+    tela_base.fill((0, 0, 0))
     if game_mode == 'andando':
  
         loc_x_antiga = player.x
@@ -109,19 +108,16 @@ while game:
         player.y = max(0, min(player.y, jogavel_height - player.height))
         camera_x = player.x - width_base // 2
         camera_y = player.y - height_base // 2
-        
  
         camera_x = max(0, min(camera_x, jogavel_width - width_base))
         camera_y = max(0, min(camera_y, jogavel_height - height_base))
  
         draw_map(tela_base, mapa, camera_x, camera_y)
- 
         player.draw(tela_base, camera_x, camera_y)
  
         if is_grass(mask, player.get_rect()):
             draw_cover(tela_base, mapa, player, camera_x, camera_y)
  
-        
         if player_esta_na_grama:
             draw_cover(tela_base, mapa, player, camera_x, camera_y)
  
@@ -147,20 +143,19 @@ while game:
         else:
             mensagem_cura = ""
  
- 
     elif game_mode == 'batalha':
-            desenha_tela(tela_base)
-            toca_musica("assets/sounds/battle.mp3", 0.5)
-            novo_modo = draw_battle(tela_base, fonte)
-            if novo_modo == 'andando':
-                game_mode = 'andando'
-                toca_musica("assets/sounds/Route1.mp3", 0.5)
-            else:
-                game_mode = novo_modo
+        desenha_tela(tela_base)
+        toca_musica("assets/sounds/battle.mp3", 0.5)
+        novo_modo = draw_battle(tela_base, fonte)
+        if novo_modo == 'andando':
+            game_mode = 'andando'
+            toca_musica("assets/sounds/Route1.mp3", 0.5)
+        else:
+            game_mode = novo_modo
+ 
     elif game_mode == 'inicio':
         inicio = tela_inicio()
         draw_inicio(tela_base, inicio)
- 
         if keys[pygame.K_RETURN]:
             game_mode = 'andando'
             toca_musica("assets/sounds/Route1.mp3", 0.5)
@@ -170,8 +165,7 @@ while game:
     frame_base.blit(tela_base, (game_x, game_y))
     tela_escalada = pygame.transform.scale(frame_base, (WIDTH, HEIGHT))
     screen.blit(tela_escalada, (0, 0))
-    pygame.display.update()  # Mostra o novo frame para o jogador
+    pygame.display.update()
  
 # ===== Finalização =====
-pygame.quit()  # Função do PyGame que finaliza os recursos utilizados
- 
+pygame.quit()
