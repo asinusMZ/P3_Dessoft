@@ -2,7 +2,7 @@ import pygame
 from spritesheet import SpriteSheet
 
 
-class Player:
+class Player: #cria classe player
     def __init__(self, x, y):
         super().__init__()
 
@@ -19,7 +19,7 @@ class Player:
 
         self.load_frames()
 
-    def load_frames(self):
+    def load_frames(self): # pega os frames do player andando
         sheet = SpriteSheet("assets/pokecharacters.png", (255, 127, 39))
         self.animations = {
             "down": [
@@ -53,7 +53,7 @@ class Player:
                     (self.width, self.height)
                 )
 
-    def move(self, keys, mask, is_collision, is_ledge):
+    def move(self, keys, mask, is_collision, is_ledge): # funcao que faz o player mover
     
         moving = False
 
@@ -64,7 +64,7 @@ class Player:
 
         dx = 0
         dy = 0
-
+        #inputs
         if keys[pygame.K_w] or keys[pygame.K_UP]:
             dy -= self.speed
             self.direction = "up"
@@ -113,7 +113,7 @@ class Player:
         else:
             self.frame_index = 0
 
-    def animate(self):
+    def animate(self): # faz animacao do player
         self.animation_timer += 1
 
         if self.animation_timer >= 10:
@@ -124,7 +124,7 @@ class Player:
             if self.frame_index >= len(self.animations[self.direction]):
                 self.frame_index = 0
 
-    def draw(self, screen, camera_x=0, camera_y=0):
+    def draw(self, screen, camera_x=0, camera_y=0): # desenha o sprite no meio da camera
         current_sprite = self.animations[self.direction][self.frame_index]
         screen.blit(current_sprite, (self.x - camera_x, self.y - camera_y))
     
