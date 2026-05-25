@@ -61,7 +61,7 @@ class battle:
 batalha = battle(player, enemy)
 def handle_input(event): #IA
     global mostra_caixa_acoes, mostra_caixa_ataques, selected, selected_attack
-    print(f"evento: {event.key}, caixa_ataques: {mostra_caixa_ataques}, caixa_acoes: {mostra_caixa_acoes}")
+    
     if event.type != pygame.KEYDOWN:
         return
 
@@ -73,12 +73,12 @@ def handle_input(event): #IA
 
         elif event.key == pygame.K_UP:
             selected_attack = 0
-            print("W pressionado, selected_attack =", selected_attack)
+            
             return
 
         elif event.key == pygame.K_DOWN:
             selected_attack = 1
-            print("S pressionado, selected_attack =", selected_attack)
+            
             return
 
         elif event.key == pygame.K_RETURN and pode_atacar:
