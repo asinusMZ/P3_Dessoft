@@ -12,3 +12,6 @@ https://www.spriters-resource.com/game_boy_gbc/pokemonredblue/asset/112056/
 https://www.spriters-resource.com/game_boy_gbc/pokemonredblue/asset/8739/ 
 
 https://www.spriters-resource.com/game_boy_gbc/pokemonredblue/asset/36964/
+
+Segue abaixo o link do video:
+https://youtu.be/isjxp8loKbg 

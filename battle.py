@@ -27,7 +27,7 @@ class battle: #cria a classe battle com suas informacoes
         self.player = player_pokemon
         self.enemy = enemy_pokemon
         self.state = "ESCOLHA_ACAO"
-        self.message = f"{self.enemy.name} quer batalhar! Aperte ENTER para escolher uma ação!"
+        self.message = f"{self.enemy.name} quer batalhar!"
 
     
     def player_attack(self, move): # ataque do player
