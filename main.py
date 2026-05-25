@@ -86,8 +86,10 @@ while game:
                 if event.key == pygame.K_c:
                     if npc_cura.is_near_player(player):
                         models.player.vida = models.player.max_hp
-                        mensagem_cura = f"{models.player.name} foi curado! HP: {models.player.vida}"
-                        mensagem_cura_timer = 180  # 3 segundos a 60fps
+                        for move in models.player.moves:
+                            move.current_pp = move.pp
+                        mensagem_cura = f"{models.player.name} foi curado!"
+                        mensagem_cura_timer = 180
  
         if event.type == pygame.QUIT:
             game = False
@@ -138,7 +140,7 @@ while game:
         # Mostra mensagem de cura
         if mensagem_cura_timer > 0:
             mensagem_cura_timer -= 1
-            msg_surf = fonte.render(mensagem_cura, True, (100, 255, 100))
+            msg_surf = fonte.render(mensagem_cura, True, (0, 0, 0))
             tela_base.blit(msg_surf, (5, 5))
         else:
             mensagem_cura = ""
@@ -169,3 +171,4 @@ while game:
  
 # ===== Finalização =====
 pygame.quit()
+ 
