@@ -37,6 +37,7 @@ class battle: #cria a classe battle com suas informacoes
         move.use()
         if self.enemy.is_fainted(self.enemy.vida):
             self.state = "VITORIA"
+            batalha.message = f"{batalha.enemy.name} foi derrotado!"
         else:
             self.state = "TURNO_INIMIGO"
     def enemy_attack(self): # ataque do enemy
@@ -144,7 +145,7 @@ def draw_battle(tela, fonte): #desenha a batalha com base nas funções do battl
             vencedor = batalha.check_winner()
             if vencedor == "JOGADOR":
                 batalha.state = "VITORIA"
-                batalha.message = f"{batalha.enemy.name} foi derrotado!"
+                
             elif vencedor == "INIMIGO":
                 batalha.state = "DERROTA"
                 batalha.message = f"{batalha.player.name} foi derrotado!"
