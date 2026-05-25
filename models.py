@@ -5,7 +5,7 @@ import random
 
 player = ''
 
-class Move: #IA
+class Move: #IA # cria classe move (ataque do pokemon) com seus status
     def __init__(self, name, move_type, power, accuracy, pp):
         self.name = name          # "Lança-Chamas"
         self.move_type = move_type  # "Fogo"
@@ -14,13 +14,13 @@ class Move: #IA
         self.pp = pp              # 15  (quantas vezes pode usar)
         self.current_pp = pp      # PP atual (vai diminuindo)
 
-    def use(self):
+    def use(self): #usa o ataque
         if self.current_pp > 0:
             self.current_pp -= 1
             return True
         return False  # sem PP, não pode usar
     
-def pega_ataques(poke_data):
+def pega_ataques(poke_data): #transforma os ataques do dicionario em um lista de moves
     pokemon_data = poke_data
 
     if pokemon_data == None:
@@ -43,14 +43,14 @@ def pega_ataques(poke_data):
     return ataques_convertidos
 
 
-with open('pokemons_ataque.json') as f:
+with open('pokemons_ataque.json') as f: #abre o arquivo
     dicionario_ataques = json.load(f)
 
 with open('sprites.json') as sprites:
     sprites_coordenadas = json.load(sprites)
 
 
-for poke in dicionario_ataques:
+for poke in dicionario_ataques: #cria o player pokemon (no caso é o charmander)
     if poke["name"] == "Charmander":
         player = pokemon(poke["name"],
                          poke['hp'],
@@ -65,13 +65,13 @@ for poke in dicionario_ataques:
 player.moves = pega_ataques(player)
 
 
-def get_enemy_sprite(enemy):
+def get_enemy_sprite(enemy): #pega as coordenadas do sprite do enemy (pokemons.png)
     for poke in  sprites_coordenadas:
         if poke['name'] == enemy.name:
             return poke['x'], poke['y'], poke['width'], poke['height']
     return None
 
-def define_enemy():
+def define_enemy(): #define um inimigo aleatorio
     escolhido = random.choice(dicionario_ataques)
     enemy = pokemon(escolhido['name'], escolhido['hp'], escolhido['defense'], escolhido['moves'], escolhido['attack'])
     enemy.moves = pega_ataques(enemy)

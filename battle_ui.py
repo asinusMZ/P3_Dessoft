@@ -3,23 +3,19 @@ from pokemon import *
 from models import *
 import models
 
-class SpriteSheet: #IA
+class SpriteSheet: #IA #cria a classe spritesheet com metodos que facilitam no código
     def __init__(self, path):
         self.sheet = pygame.image.load(path)
     
-    def get_color(self, x, y):
+    def get_color(self, x, y): # pega cor em um ponto especifico
         return self.sheet.get_at((x, y))
 
-    def get_sprite(self, x, y, width, height):
+    def get_sprite(self, x, y, width, height): # pega um sprite em um retangulo
         rect = pygame.Rect(x, y, width, height)
         return self.sheet.subsurface(rect)
 
-    def get_sprite_by_index(self, col, row, width, height):
-        x = col * width
-        y = row * height
-        return self.get_sprite(x, y, width, height)
 
-sprite_sheet = SpriteSheet('assets/assetspokemon.png')
+sprite_sheet = SpriteSheet('assets/assetspokemon.png') #transforma o arquivo em spritesheet
 sprites_pokemons = SpriteSheet('assets/pokemons.png')
 vermelho_transparente = sprite_sheet.get_color(215,28)
 cinza_transparente = sprites_pokemons.get_color(411,123)
@@ -36,7 +32,7 @@ caixa_de_ataques = sprite_sheet.get_sprite(8, 376, 167-8, 455-376)
 
 
 
-def get_enemy_surface():
+def get_enemy_surface(): # cria o sprite do enemy
     coords = get_enemy_sprite(models.enemy)
     if coords:
         ex, ey, ew, eh = coords
@@ -50,13 +46,10 @@ lista_sprites = [sublinhado, barra_de_vida, caixa_de_texto, caixa_de_acoes, seti
 lista_pokemons = [charmander]
 
 
-for poke in dicionario_ataques:
+for poke in dicionario_ataques: # pega o hp_max do player
     if poke["name"] == player.name:
         hp_max_player = poke["hp"]
 
-for poke in dicionario_ataques:
-    if poke["name"] == enemy.name:
-        hp_max_enemy = poke["hp"]
         
 
 
@@ -97,7 +90,7 @@ def desenha_mensagem(tela, fonte, texto): # desenha a mensagem da batalha
     tela.blit(texto, (5, 120))
 
 
-def desenha_caixas(caixa, tela, fonte): 
+def desenha_caixas(caixa, tela, fonte): # funcao que desenha as caixas seja de acao ou de ataques
     texto = ''
     if caixa == 'acoes':
         tela.blit(caixa_de_acoes, (60, 100))
@@ -113,7 +106,7 @@ def desenha_caixas(caixa, tela, fonte):
         tela.blit(texto, (53, 117))
         texto = fonte.render(ataques[1].name, False, (0,0,0))
         tela.blit(texto, (53, 127))
-def desenha_seta(caixa, tela, selected, fonte):
+def desenha_seta(caixa, tela, selected, fonte): # desenha o indicador na batalha
     if caixa == 'acoes':
         if selected == 'fight':
             tela.blit(setinha, (67, 110))

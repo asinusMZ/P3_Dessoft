@@ -1,4 +1,4 @@
-class pokemon:
+class pokemon: #cria classe pokemon com status
     def __init__(self,name, hp, defense, moves, attack):
         self.name = name
         self.vida = hp
@@ -7,15 +7,15 @@ class pokemon:
         self.moves = moves
         self.attack = attack
     
-    def take_damage(self, dano):
+    def take_damage(self, dano): # recebe dano
         self.vida -= dano
         if self.vida < 0:
             self.vida = 0
  
-    def heal(self):
+    def heal(self): # cura o pokemon
         self.vida = self.max_hp
  
-    def is_fainted(self, hp):
+    def is_fainted(self, hp): # checa se o pokemon esta derrotado
         if hp <= 0:
             return True
         else:
