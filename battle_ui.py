@@ -64,10 +64,11 @@ for poke in dicionario_ataques:
 ataques = player.moves
 def desenha_tela(tela):
     enemy_sprite = get_enemy_surface() 
-    hp_max_enemy = next(p['hp'] for p in dicionario_ataques if p['name'] == models.enemy.name)
+    hp_max_enemy = next(p['hp'] for p in dicionario_ataques if p['name'] == models.enemy.name) # loop ate achar o hp do enemy
     
     tela.fill((245, 245, 245))
-    largura_hp_player = player.vida / hp_max_player * (87-39)
+    #calcula barra de vida
+    largura_hp_player = player.vida / hp_max_player * (87-39) 
     largura_hp_enemy = models.enemy.vida / hp_max_enemy * (87-39)
 
     hp_player_barra = pygame.transform.scale(
@@ -79,7 +80,7 @@ def desenha_tela(tela):
         hp_player,
         (int(largura_hp_enemy), 2)
 )
-
+    #coloca tudo na tela
     tela.blit(charmander, (7, 85))
     tela.blit(enemy_sprite, (100, 20))
     tela.blit(sublinhado, (8,10))
@@ -91,12 +92,12 @@ def desenha_tela(tela):
     tela.blit(hp_player_barra, (104,95))
     
 
-def desenha_mensagem(tela, fonte, texto):
+def desenha_mensagem(tela, fonte, texto): # desenha a mensagem da batalha
     texto = fonte.render(texto, False, (0,0,0))
     tela.blit(texto, (5, 120))
 
 
-def desenha_caixas(caixa, tela, fonte):
+def desenha_caixas(caixa, tela, fonte): 
     texto = ''
     if caixa == 'acoes':
         tela.blit(caixa_de_acoes, (60, 100))

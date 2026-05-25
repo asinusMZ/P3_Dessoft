@@ -1,7 +1,9 @@
 # P3_Dessoft
+Feito por Matias Aguiar, Lucas Queiroz e Gabriel Lindquist.
 Nosso projeto é um pokemon com foco principalmente na batalha e na movimentação.
 Precisamos de algumas ajudas de IA para fazer algumas funções e classes.
-Segue abaixo alguns links que nós utilizamos:
+Para rodar o jogo precisa da run na main.py
+Segue abaixo alguns links que nós utilizamos para os sprites:
 
 https://downloads.khinsider.com/game-soundtracks/album/pokemon-red-green-blue-yellow 
 
